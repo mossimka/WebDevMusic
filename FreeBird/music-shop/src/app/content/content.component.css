@@ -12,8 +12,8 @@
 
 .search{
     position: absolute;
-    top: 2vh;
-    right: 2vw;
+    top: 2.5vh;
+    right: 15vw;
     width: 20vw;
 }
 .search form{

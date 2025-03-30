@@ -28,3 +28,13 @@ main{
     display: flex;
     justify-content: center;
 }
+
+.logging{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15vw;
+}
+.logging button{
+  width: 5vw;
+}

@@ -2,8 +2,8 @@
   <img class="brand-logo" src="/assets/logo.png" alt="logo">
   <div>
     <section class="logging">
-      <button *ngIf="!logged_in" class="primary" id="login" (click)="login()">Login</button>
-      <button *ngIf="!logged_in" class="primary" id="sign up" (click)="sign_up()">Sign up</button>
+      <button *ngIf="!logged_in" class="primary" id="sign_in" [routerLink]="['/sign-in']">Sign in</button>
+      <button *ngIf="!logged_in" class="primary" id="sign_up" [routerLink]="['/sign-up']">Sign up</button>
     </section>
     <div *ngIf="logged_in">
       <div>

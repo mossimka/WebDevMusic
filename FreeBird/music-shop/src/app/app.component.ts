@@ -15,12 +15,4 @@ export class AppComponent {
   title = 'music-shop';
 
   logged_in:boolean = false;
-
-  sign_up() {
-
-  }
-
-  login() {
-
-  }
 }
