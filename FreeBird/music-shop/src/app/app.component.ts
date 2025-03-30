@@ -7,19 +7,20 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-root',
    standalone: true,
-  imports: [CommonModule, RouterModule], 
-  template: `
-    <header>
-      <img class="brand-logo" src="/assets/logo.png" alt="logo">
-    </header>
-    <main>
-      <section class="results">
-        <router-outlet></router-outlet>
-      </section>
-    </main>
-  `,
+  imports: [CommonModule, RouterModule],
+  templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'music-shop';
+
+  logged_in:boolean = false;
+
+  sign_up() {
+
+  }
+
+  login() {
+
+  }
 }

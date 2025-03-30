@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-content',
   imports: [ShopItemsComponent, CommonModule, FormsModule],
-  templateUrl: './details.component.html',
+  templateUrl: './content.component.html',
   styleUrl: `./content.component.css`,
 })
 export class ContentComponent {

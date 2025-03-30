@@ -1,0 +1,21 @@
+<header>
+  <img class="brand-logo" src="/assets/logo.png" alt="logo">
+  <div>
+    <section class="logging">
+      <button *ngIf="!logged_in" class="primary" id="login" (click)="login()">Login</button>
+      <button *ngIf="!logged_in" class="primary" id="sign up" (click)="sign_up()">Sign up</button>
+    </section>
+    <div *ngIf="logged_in">
+      <div>
+        <button class="primary">Cart</button>
+        <button>View orders</button>
+        <button>Sign out</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="results">
+    <router-outlet></router-outlet>
+  </section>
+</main>
