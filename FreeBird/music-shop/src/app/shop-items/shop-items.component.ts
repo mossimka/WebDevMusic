@@ -14,8 +14,16 @@ export class ShopItemsComponent {
   @Input() product!:Product;
   @Output() productRemoved = new EventEmitter<Number>();
 
+  liked = false;
+
   like(){
-    this.product.likes++;
+    if (!this.liked){
+      this.product.likes++;
+      this.liked = true;
+    } else{
+      this.product.likes--;
+      this.liked = false;
+    }
   }
   remove(){
     this.productRemoved.emit(this.product.id);
