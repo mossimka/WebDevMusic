@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    color: #3c5654;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    scrollbar-color: #3c5654 #e4ecec;
+    scrollbar-width: 1vw;
+}
+
+
+.input-place{
+    color: #3c5654;
+    border: none;
+    height: 5vh;
+    border: 1px solid white;
+    padding-left: 5px;
+    border-radius: 5px;
+}
+.input-place:focus{
+    border: 1px solid #3c5654;
+}
+button.primary {
+    padding: 10px;
+    border: solid 1px var(--primary-color);
+    background: #3c5654;
+    color: white;
+    border-radius: 8px;
+}
+button.primary:hover {
+    padding: 10px;
+    border: solid 1px var(--primary-color);
+    background: #3c5654;
+    color: #e4ecec;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button.primary:active{
+    color: #7a9794;
+}

@@ -1,0 +1,351 @@
+{
+  "products": [
+    {
+      "id": 0,
+      "name": "Hohner Marine Band Crossover",
+      "price": 41700,
+      "photo": "/assets/marine-band-crossover.jpg",
+      "subPhotos": ["https://resources.cdn-kaspi.kz/img/m/p/h3f/hf6/64803405824030.jpg?format=gallery-medium", "https://hohner.de/fileadmin/images/instruments/harmonicas/diatonic/marine-band/marine-band-crossover/gallery/marine-band-crossover_08.jpg"],
+      "type": "brass",
+      "description": "A hundred years down the road, the blues is still one of the most influential musical genres around...",
+      "availableUnits": 2,
+      "country": "Germany",
+      "link": "https://kaspi.kz/shop/p/hohner-marine-band-crossover-c-m2009016-serebristyi-105615959/?c=750000000",
+      "rating": 4.9,
+      "likes": 0
+    },
+    {
+      "id": 1,
+      "name": "Cort CR250 VB",
+      "price": 186990,
+      "photo": "/assets/cort-cr250.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/h4a/h4c/63768941559838.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/h5a/hb7/63768942149662.jpg?format=gallery-medium"
+      ],
+      "type": "guitars",
+      "description": "The Cort CR250 VB is a versatile electric guitar that's perfect for both beginners and experienced players. It boasts a classic single-cutaway design, a comfortable mahogany body, and a rosewood fretboard, delivering a warm, resonant tone that's ideal for a wide range of musical styles.",
+      "availableUnits": 3,
+      "country": "Korea",
+      "link": "https://kaspi.kz/shop/p/cort-cr250-vb-brown-14200024/?c=750000000",
+      "rating": 4.8,
+      "likes": 0
+    },
+    {
+      "id": 2,
+      "name": "Ibanez GRG170DX BKN",
+      "price": 153000,
+      "photo": "/assets/ibanez-grg170dx.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/h59/hd7/69821626089502.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/h96/h42/69821626613790.jpg?format=gallery-medium"
+      ],
+      "type": "guitars",
+      "description": "Shred with style! The Ibanez GRG170DX BKN is a high-performance electric guitar designed for speed and precision. Its sleek, thin neck and powerful humbucking pickups make it a favorite for rock and metal players.",
+      "availableUnits": 1,
+      "country": "Japan",
+      "link": "https://kaspi.kz/shop/p/ibanez-grg170dx-bkn-chernyi-109248047/?c=750000000",
+      "rating": 5,
+      "likes": 0
+    },
+    {
+      "id": 3,
+      "name": "Marshall DSL5CR",
+      "price": 280000,
+      "photo": "/assets/marshall-dsl5cr.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/he5/h84/79298159706142.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/h37/h51/79298160754718.jpg?format=gallery-medium"
+      ],
+      "type": "accessories",
+      "description": "Unleash legendary Marshall tone with the DSL5CR. This compact combo amplifier delivers 5 watts of pure valve power, perfect for practicing at home or recording. With two channels, classic gain controls, and an onboard reverb, you can dial in a wide range of iconic Marshall sounds.",
+      "availableUnits": 4,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/marshall-dsl5cr-e-109545659/?c=750000000",
+      "rating": 4.6,
+      "likes": 0
+    },
+    {
+      "id": 4,
+      "name": "Fender Deluxe Series Cable 4.5m",
+      "price": 23000,
+      "photo": "/assets/fender-deluxe-cable.jpg",
+      "subPhotos": [
+        "https://m.media-amazon.com/images/I/61qU5UQc7HL._AC_UF1000,1000_QL80_.jpg",
+        "https://muzzone.kz/images/thumbnails/264/264/detailed/21/Deluxe_Series_Instrument_Cable.jpg"
+      ],
+      "type": "accessories",
+      "description": "Ensure pristine signal transfer with the Fender Deluxe Series Cable. This high-quality instrument cable features durable construction, top-notch shielding, and gold-plated connectors for optimal clarity and performance.",
+      "availableUnits": 10,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/fender-deluxe-series-099-0820-086-4-5-m-bezhevyi-102138304/?c=750000000",
+      "rating": 4.8,
+      "likes": 0
+    },
+    {
+      "id": 5,
+      "name": "Fender FA-345CE Auditorium",
+      "price": 290000,
+      "photo": "/assets/fender-fa-345ce.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/he9/h7f/63810605973534.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/h50/h6d/63810601713694.jpg?format=gallery-medium"
+      ],
+      "type": "guitars",
+      "description": "The Fender FA-345CE Auditorium is a beautifully crafted acoustic-electric guitar that delivers a rich, full sound. Its auditorium body shape provides balanced tone and projection, making it ideal for both strumming and fingerpicking.",
+      "availableUnits": 3,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/fender-fa-345ce-auditorium-3-tone-tea-burst-14100479/?c=750000000",
+      "rating": 4,
+      "likes": 0
+    },
+    {
+      "id": 6,
+      "name": "Fender Vintera II '50s Stratocaster Ocean Turquoise",
+      "price": 749990,
+      "photo": "/assets/fender-vintera-ii-50s-stratocaster.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/p14/p64/20138791.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/p30/p64/20138792.jpg?format=gallery-medium"
+      ],
+      "type": "guitars",
+      "description": "The Fender Vintera II '50s Stratocaster is a tribute to the iconic guitars that shaped the sound of rock and roll. With its classic vintage styling and authentic tone, this guitar is perfect for players who want the true Fender experience.",
+      "availableUnits": 1,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/fender-vintera-ii-50s-stratocaster-ocean-turquoise-goluboi-133440409/?c=750000000",
+      "rating": 5,
+      "likes": 0
+    },
+    {
+      "id": 7,
+      "name": "Fender Player Plus Jazz Bass Aged Candy Apple Red",
+      "price": 799990,
+      "photo": "/assets/fender-player-plus-jazz-bass.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/h11/h8b/64174409646110.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/hd9/h77/64174411513886.jpg?format=gallery-medium"
+      ],
+      "type": "guitars",
+      "description": "The Fender Player Plus Jazz Bass is a versatile and modern bass guitar that delivers exceptional tone and playability. With its comfortable body shape, powerful pickups, and smooth playing feel, this bass is perfect for any style of music.",
+      "availableUnits": 1,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/fender-player-plus-jazz-bass-aged-candy-apple-red-103253823/?c=750000000",
+      "rating": 4.9,
+      "likes": 0
+    },
+    {
+      "id": 8,
+      "name": "Ernie Ball Everlast Picks 0.73 mm Orange 12 pcs",
+      "price": 2990,
+      "photo": "/assets/ernie-ball-everlast-picks.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/h84/hec/84675261366302.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/h53/h50/84675261399070.jpg?format=gallery-medium"
+      ],
+      "type": "accessories",
+      "description": "Ernie Ball Everlast picks are made from a durable and long-lasting material that provides a bright and articulate tone. These picks are perfect for guitarists of all levels who want a reliable and consistent pick.",
+      "availableUnits": 15,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/ernie-ball-everlast-picks-0-73-mm-orange-12-sht-109348257/?c=750000000",
+      "rating": 4.5,
+      "likes": 0
+    },
+    {
+      "id": 9,
+      "name": "Fender 2\" Neon Monogrammed Strap",
+      "price": 19990,
+      "photo": "/assets/fender-2-neon-monogrammed-strap.jpg",
+      "subPhotos": [
+        "https://cdn11.bigcommerce.com/s-7i8y5wa/images/stencil/1280x1280/products/37641/1393009/FEN-0990681302-2__38311.1731684836.jpg?c=2",
+        "https://stevesmusic.com/cdn/shop/files/16949.jpg?v=1712301319&width=840"
+      ],
+      "type": "accessories",
+      "description": "The Fender 2\" Neon Monogrammed Strap is a stylish and comfortable guitar strap that adds a touch of personality to your playing. With its vibrant neon colors and iconic Fender logo, this strap is sure to turn heads.",
+      "availableUnits": 5,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/fender-2-neon-monogrammed-strap-0990681303-mul-tikolor-102435981/?c=750000000",
+      "rating": 5,
+      "likes": 0
+    },
+    {
+      "id": 10,
+      "name": "Yamaha V3SKA44 4/4",
+      "price": 79990,
+      "photo": "/assets/yamaha-v3ska44.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/h09/hc4/63804439953438.jpg?format=gallery-medium",
+        "https://resources.cdn-kaspi.kz/img/m/p/he1/h80/63804443295774.jpg?format=gallery-medium"
+      ],
+      "type": "bowed",
+      "description": "The Yamaha V3SKA44 4/4 is a high-quality and affordable acoustic guitar that is perfect for beginners. With its comfortable body shape, warm tone, and easy playability, this guitar is a great choice for students of all ages.",
+      "availableUnits": 2,
+      "country": "Japan",
+      "link": "https://kaspi.kz/shop/p/yamaha-v3ska44-4-4-brown-42100048/?c=750000000&utm_source=google&utm_medium=cpc&utm_campaign=shop_google_performance_max_smartphones_v2&gclid=Cj0KCQiA-5a9BhCBARIsACwMkJ7163V_njnykjyCzfBCLqkmaX5D2YY826m0FSvI19CB_VsApsdt8YIaAu1EEALw_wcB",
+      "rating": 4.6,
+      "likes": 0
+    },
+    {
+      "id": 11,
+      "name": "Fender Gragon Capo",
+      "price": 8800,
+      "photo": "/assets/fender-capo.jpg",
+      "subPhotos": ["https://resources.cdn-kaspi.kz/img/m/p/h28/h7c/64123268857886.jpg?format=gallery-medium", "https://resources.cdn-kaspi.kz/img/m/p/hec/h15/64123271544862.jpg?format=gallery-medium"],
+      "type": "accessories",
+      "description": "Simple to use and made with durable lightweight cast aluminum, the Dragon Capo delivers ideal capo performance anywhere along the neck of any acoustic or electric guitar. Convenient micro-dial thumbscrew lets you change positions quickly and easily with just the right pressure at any fret, and special protective pads won't harm neck finishes.",
+      "availableUnits": 6,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/fender-099-0409-000-chernyi-101290989/?c=750000000&utm_source=google&utm_medium=cpc&utm_campaign=shop_google_performance_max_smartphones_v2&gclid=Cj0KCQiA-5a9BhCBARIsACwMkJ7163V_njnykjyCzfBCLqkmaX5D2YY826m0FSvI19CB_VsApsdt8YIaAu1EEALw_wcB",
+      "rating": 4.2,
+      "likes": 0
+    },
+    {
+      "id": 12,
+      "name": "Lee Oskar 1910 Major Diatonic C",
+      "price": 34000,
+      "photo": "/assets/lee-oscar-1910.jpg",
+      "subPhotos": ["https://cdn.abicart.com/shop/4079/art79/h8064/116328064-origpic-60dc49.jpg", "https://img.kytary.com/eshop_ie/velky_v2/na/636681982723230000/ed1c7579/64579216/lee-oskar-major-diatonic-1910-c-opened.jpg"],
+      "type": "brass",
+      "description": "The Major Diatonic Harmonica was originally intended for playing simple Folk music of the nineteenth century and its notation layout was adequate for that purpose. The Major Diatonic harmonica is the most commonly used tuning for playing Blues, Rock, Country Folk & Jazz.",
+      "availableUnits": 2,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/lee-oskar-1910-c-c-major-serebristyi-106709411/?m=TITOV&utm_source=google&utm_medium=cpc&utm_campaign=shop_google_performance_max_30k-100k&gad_source=1&gclid=CjwKCAiAqrG9BhAVEiwAaPu5zrW6KXBz9ANOThWwXDkPexhSMAmR5TGVUNCYJOHwknNjfvXKHm8jYRoCuVYQAvD_BwE",
+      "rating": 5,
+      "likes": 0
+    },
+    {
+      "id": 13,
+      "name": "Yamaha YFL-212",
+      "price": 286500,
+      "photo": "/assets/yamaha-YFL-212.jpg",
+      "subPhotos": ["https://resources.cdn-kaspi.kz/img/m/p/h38/h13/63829018574878.jpg?format=gallery-large","https://resources.cdn-kaspi.kz/img/m/p/h11/ha0/63829021327390.jpg?format=gallery-large"],
+      "type": "brass",
+      "description": "Our Custom and Professional grade flutes have earned a reputation for exceptional quality, design, performance and consistency, thanks to the craftsmanship of our brass and woodwind workshops. Our Student models inherit many of the same hallmarks - but, to aid new flautists, our Student flutes are designed and shaped to encourage best-technique, as well as offering superb playability. For instance, we have designed the lip plate to guide beginners toward proper breath utilisation and keys with extensively tested dimensions and angles for optimum balance and easy playability. These and other details are some of the reasons why our Student flutes have become bestsellers worldwide.",
+      "availableUnits": 1,
+      "country": "Japan",
+      "link": "https://kaspi.kz/shop/p/yamaha-yfl-212-silver-100053976/?c=750000000&utm_source=google&utm_medium=cpc&utm_campaign=shop_google_search_leisure_musical_instruments_desktop&gclid=CjwKCAiAqrG9BhAVEiwAaPu5zgDoa29oZUsGU04DDhCLZJ-zG-vSnkUiqDJRkGRDjr1oVixrKYgprRoC-0QQAvD_BwE",
+      "rating": 4.7,
+      "likes": 0
+    },
+    {
+      "id": 14,
+      "name": "Stagg WS-AS218S",
+      "price": 440000,
+      "photo": "/assets/stagg-WS-AS218S.jpg",
+      "subPhotos": ["https://resources.cdn-kaspi.kz/img/m/p/h6c/hea/63806891196446.jpg?format=gallery-large","https://resources.cdn-kaspi.kz/img/m/p/h8b/he1/63806895652894.jpg?format=gallery-large"],
+      "type": "brass",
+      "description": "A voluminous and powerful sound, thanks to which it can be successfully used in pop music and rock - roles You'll find a number of great features that make this sax more user-friendly, including a high F# key and an adjustable thumb rest , The design of the musical instrument includes 25 keys, as well as leather cushions with metal resonators. The bell, body and neck are made of brass. The outside of the saxophone is covered with a layer of transparent varnish. The kit comes with everything you need for instant use: mouthpiece, reed, ligature, cap, cleaner, gloves. Additionally, there is a soft case designed for storing and transporting the tool.",
+      "availableUnits": 1,
+      "country": "Belgium",
+      "link": "https://kaspi.kz/shop/p/stagg-ws-as218s-59700009/?c=750000000&utm_source=google&utm_medium=cpc&utm_campaign=shop_google_search_leisure_musical_instruments_desktop&gclid=CjwKCAiAqrG9BhAVEiwAaPu5zgDoa29oZUsGU04DDhCLZJ-zG-vSnkUiqDJRkGRDjr1oVixrKYgprRoC-0QQAvD_BwE",
+      "rating": 5,
+      "likes": 0
+    },
+    {
+      "id": 15,
+      "name": "DUNLOP Formula 65 Ultimate Lemon Oil",
+      "price": 2200,
+      "photo": "/assets/dunlop-lemon-oil.jpg",
+      "subPhotos": ["https://media.sweetwater.com/m/products/image/aa6ffc0adfSOhWYCjiFX6vZSuywEvr1n4zbTfkzN.wm-lh.jpg?quality=82&height=750&ha=aa6ffc0adfbbe922","https://m.media-amazon.com/images/I/51+IwUXB2UL.jpg"],
+      "type": "accessories",
+      "description": "Specially formulated to remove grime and return your guitar’s fretboard to its original luster, this oil also leaves an invisible sealant to protect against stains and moisture. NOTE: Not for use on maple fretboards.",
+      "availableUnits": 15,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/dunlop-formula-65-ultimate-lemon-oil-6551si-110039361/?c=750000000&utm_source=google&utm_medium=cpc&utm_campaign=shop_google_search_leisure_musical_instruments_desktop&gclid=CjwKCAiAqrG9BhAVEiwAaPu5zgDoa29oZUsGU04DDhCLZJ-zG-vSnkUiqDJRkGRDjr1oVixrKYgprRoC-0QQAvD_BwE",
+      "rating": 4.9,
+      "likes": 0
+    },
+    {
+      "id": 16,
+      "name": "Stagg VNC L 4/4 Vio",
+      "price": 280000,
+      "photo": "/assets/stagg-VNCL.jpg",
+      "subPhotos": ["https://resources.cdn-kaspi.kz/img/m/p/h61/h32/64239463563294.jpg?format=gallery-large","https://resources.cdn-kaspi.kz/img/m/p/h2b/h9b/64239464087582.jpg?format=gallery-large"              ],
+      "type": "bowed",
+      "description": "Cello 4/4 solid with solid spruce top, solid maple body, neck and maple bridge, fingerboard and pegs made of hard black wood, metal tailpiece with 4 screws fine tuning. Cover, bow and rosin included. Hand-made, entirely by hand.",
+      "availableUnits": 5,
+      "country": "Belgium",
+      "link": "https://kaspi.kz/shop/p/stagg-vnc-l-4-4-korichnevyi-107199597/?c=750000000",
+      "rating": 4.7,
+      "likes": 0
+    },
+    {
+      "id": 17,
+      "name": "Hohner Blues Harp M533016X Silver-Brown",
+      "price": 22400,
+      "photo": "/assets/hohner-blues-harp.jpg",
+      "subPhotos": ["https://cdn11.bigcommerce.com/s-luvfwivmyi/images/stencil/1280x1280/products/22881/27929/hohner-532-blues-harp-harmonica-blues-harp-532bx-c-key-of-c-7__72612.1657732753.jpg?c=1","https://www.glazbena-kutija.hr/image/catalog/Hohner/Hohner-blues-harp-ms-usna-harmonika-1.jpg"],
+      "type": "brass",
+      "description": "The name evokes the typical blues sound. It is a metaphor for whiskey bars, juke joints, and good times; synonymous with wide plains, open fields, and pilgrimage: The Blues Harp®. For over 50 years, the harmonica has shaped the sound of blues, rock, and sometimes even folk. The Blues Harp® is designed for this specific blues sound, but thanks to the modular system it can easily be adjusted and changed to anything you want it to be – easy, quickly, at any time. Whether you’re a beginner or advanced, the Blues Harp® is the harp for you.",
+      "availableUnits": 3,
+      "country": "Germany",
+      "link": "https://kaspi.kz/shop/p/hohner-blues-harp-m533016x-silver-brown-100020146/?c=750000000",
+      "rating": 4.9,
+      "likes": 0
+    },
+    {
+      "id": 18,
+      "name": "GEWA GS400514100",
+      "price": 1000000,
+      "photo": "/assets/gewa-gs400514100.jpg",
+      "subPhotos": ["https://gmedia.gewamusic.com/external/file/media/getPreview/width/1000/107939.jpg","https://ir-3.ozone.ru/s3/multimedia-1-1/wc1000/7150212505.jpg"],
+      "type": "bowed",
+      "description": "The GEWA GS400514100 violin is a high-quality violin made from natural materials with a beautiful brown body. Adaptation for both beginners and more experienced musicians. Provides clear, vibrant sound and is easy to play thanks to its well-designed design and user-friendly graphics. The kit includes everything you need to start learning, including a bow and a case. An excellent choice for those who value quality and style.",
+      "availableUnits": 1,
+      "country": "Germany",
+      "link": "https://kaspi.kz/shop/p/gewa-gs400514100-korichnevyi-116084134/?c=750000000",
+      "rating": 0,
+      "likes": 0
+    },
+    {
+      "id": 19,
+      "name": "Yamaha YDP-145B",
+      "price": 609090,
+      "photo": "/assets/yamaha-YDP-145B.jpg",
+      "subPhotos": [
+        "https://resources.cdn-kaspi.kz/img/m/p/hd7/he9/79242555293726.jpg?format=gallery-large",
+        "https://resources.cdn-kaspi.kz/img/m/p/he5/h6b/79242555818014.jpg?format=gallery-large"
+      ],
+      "type": "keyboard",
+      "description": "The Yamaha YDP-145B digital piano is a quality instrument that is ideal for beginners and experienced musicians. It features 88 full-size hammer-action keys, which creates a feeling similar to playing an acoustic piano. The Yamaha YDP-145B uses Pure CF Sound Engine technology, which provides a rich and natural sound. The piano also has several built-in tones and functions for practice, such as a duet mode and a metronome. The compact and stylish design with a dark body will fit perfectly into any interior, and the stand and pedals included provide stability and comfort when playing.",
+      "availableUnits": 1,
+      "country": "Japan",
+      "link": "https://kaspi.kz/shop/p/tsifrovoe-pianino-yamaha-ydp-145b-109518135/?c=750000000",
+      "rating": 4.8,
+      "likes": 0
+    },
+    {
+      "id": 20,
+      "name": "GEWA Novita 3.0 GS4003005UA",
+      "price": 865100,
+      "photo": "/assets/gewa-novita-3.jpg",
+      "subPhotos": [
+        "https://musicmall.hu/17359-large_default/gewa-e-violin-novita-30-ua-4-string.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUNO2XNF7JltxPsvdsItngY6eHRUlHRffK_w&s"
+      ],
+      "type": "bowed",
+      "description": "The GEWA Novita 3.0 electric violin is made in Europe, combining the classic dimensions of a traditional violin with modern features. It retains a comfortable, functional design with visible wood grain and a silky-matte finish. The violin is equipped with tuning pegs, a chin rest and a tailpiece from Wittner, which ensures precise tuning and comfortable playing. A specially developed GEWA pickup and Piezo system allow connection to both headphones and an amplifier",
+      "availableUnits": 1,
+      "country": "Germany",
+      "link": "https://kaspi.kz/shop/p/gewa-music-elektroskripka-gewa-novita-3-0-gs4003005ua-chernyi-124551363/?c=750000000",
+      "rating": 4.0,
+      "likes": 0
+    },
+    {
+      "id": 21,
+      "name": "Gibson SG 61 Standard VC",
+      "price": 1305000,
+      "photo": "/assets/gibson-sg.jpg",
+      "subPhotos": [
+        "https://cdn.long-mcquade.com/files/136740/lg_9bc24edb3cb8c64c2f6ea2d43daa1c2b.jpg",
+        "https://media.guitarcenter.com/is/image/MMGS7/L54573000001000-00-720x720.jpg"
+      ],
+      "type": "guitars",
+      "description": "This guitar features an instrumental design with the signature Gibson SG body contours for easy access to all frets and a comfortable grip. It features a classic mahogany body construction for a rich, deep tone with excellent sustain. The Gibson SG '61 Standard VC features a pair of powerful Gibson Burstbucker Pro pickups that provide excellent resolution and rich tone. These pickups allow the guitar to produce a wide range of sounds, from clean, bright tones to rich, guitar riffs and solos with a big attack. This instrument also features a classic Tune-O-Matic tremolo bridge for stable tuning and high mood stability. The guitar's neck is made of mahogany with a rosewood veneer insert, which provides fast and comfortable playing. It features a classic 'Slim Taper' shape that allows for easy movement around the fretboard and comfortable execution of complex phrases and solos.",
+      "availableUnits": 1,
+      "country": "USA",
+      "link": "https://kaspi.kz/shop/p/gibson-sg-61-standard-vc-krasnyi-133510186/?c=750000000",
+      "rating": 5,
+      "likes": 0
+    }
+  ]
+}
