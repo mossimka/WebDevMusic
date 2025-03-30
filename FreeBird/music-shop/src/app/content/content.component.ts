@@ -8,27 +8,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-content',
   imports: [ShopItemsComponent, CommonModule, FormsModule],
-  template: `
-    <section class="search">
-      <form>
-        <input class="input-place" type="text" placeholder="Filter by name" #filter>
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
-      </form>
-    </section>
-    <section class="categories">
-      <div *ngFor="let category of categories">
-        <button class="category-button" [class.active]="selectedCategories.includes(category)" (click)="toggleCategory(category)">{{category}}</button>
-      </div>
-    </section>
-    <div class="div-results">
-      <section class="results">
-          <div *ngFor="let product of filteredProductsList">
-           <app-shop-items class="shop-items" [product]="product" (productRemoved)="onProductRemoved($event)"></app-shop-items>
-          </div>
-      </section>
-    </div>
-  `,
-  styleUrl: `./content.css`,
+  templateUrl: './details.component.html',
+  styleUrl: `./content.component.css`,
 })
 export class ContentComponent {
   productsList: Product[] = [];
@@ -55,7 +36,7 @@ export class ContentComponent {
       this.applyFilters();
       return;
     }
-  
+
     this.filteredProductsList = this.productsList.filter(product =>
       product?.name.toLowerCase().includes(text.toLowerCase())
     );
@@ -106,4 +87,3 @@ export class ContentComponent {
   }
 }
 
-  
