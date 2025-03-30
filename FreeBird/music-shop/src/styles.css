@@ -38,3 +38,9 @@ button.primary:hover {
 button.primary:active{
     color: #7a9794;
 }
+
+input{
+  border-radius: 5px;
+  width: 20vw;
+  height: 5vh;
+}
