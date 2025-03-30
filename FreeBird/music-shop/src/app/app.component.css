@@ -43,3 +43,40 @@ main{
   position: absolute;
   top: 1vh;
 }
+
+.logged{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 15vw;
+}
+.logged div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 17vh;
+}
+#user{
+  justify-content: center;
+  width: 12vh;
+}
+.user-img{
+  width: 5vh;
+}
+.pop-up{
+  position: absolute;
+  top: 8vh;
+  right: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #ffffff;
+  height: 10vh;
+  width: 10vw;
+  border-radius: 10px;
+  border: 1px solid #7a9794;
+}
+.pop-up button{
+  width: 8vw;
+}

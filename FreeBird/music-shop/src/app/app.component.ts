@@ -14,9 +14,13 @@ import { RouterModule } from '@angular/router';
 export class AppComponent {
   title = 'music-shop';
 
-  logged_in:boolean = false;
+  logged_in = false;
+  isPopupVisible = false;
 
   log(){
     this.logged_in = !this.logged_in;
+  }
+  popUp() {
+    this.isPopupVisible = !this.isPopupVisible;
   }
 }
