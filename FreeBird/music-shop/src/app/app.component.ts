@@ -15,4 +15,8 @@ export class AppComponent {
   title = 'music-shop';
 
   logged_in:boolean = false;
+
+  log(){
+    this.logged_in = !this.logged_in;
+  }
 }

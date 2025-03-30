@@ -38,3 +38,8 @@ main{
 .logging button{
   width: 5vw;
 }
+
+.temp-tumbler{
+  position: absolute;
+  top: 1vh;
+}
