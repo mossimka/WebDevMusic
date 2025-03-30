@@ -21,7 +21,9 @@ header{
 .input-place:focus{
     border: 1px solid #3c5654;
 }
-
+button{
+  height: 5vh;
+}
 
 /* products */
 main{
@@ -79,4 +81,5 @@ main{
 }
 .pop-up button{
   width: 8vw;
+  height: 3.5vh;
 }
