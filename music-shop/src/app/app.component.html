@@ -1,5 +1,5 @@
 <header>
-  <img class="brand-logo" src="/assets/logo.png" alt="logo">
+  <img [routerLink]="['/']" class="brand-logo" src="/assets/logo.png" alt="logo">
   <div>
     <section *ngIf="!logged_in" class="logging">
       <button class="primary" id="sign_in" [routerLink]="['/sign-in']">Sign in</button>
@@ -7,13 +7,13 @@
     </section>
     <div class="logged" *ngIf="logged_in">
       <div>
-        <button class="primary">Cart</button>
-        <button class="primary">Favorite</button>
+        <button class="primary" [routerLink]="['/cart']">Cart</button>
+        <button class="primary" [routerLink]="['/favorite']">Favorite</button>
       </div>
       <div id="user">
         <img class="user-img" src="assets/user.png" (click)="popUp()">
         <section class="pop-up" *ngIf="isPopupVisible">
-          <button>Orders</button>
+          <button [routerLink]="['/orders']">Orders</button>
           <button>Sign out</button>
         </section>
       </div>

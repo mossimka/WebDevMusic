@@ -4,6 +4,8 @@ import { DetailsComponent } from "./details/details.component";
 import {SignInComponent} from './sign-in/sign-in.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {FavoriteComponent} from './favorite/favorite.component';
+import {CartComponent} from './cart/cart.component';
+import {OrdersComponent} from './orders/orders.component';
 
 const routeConfig: Routes = [
     {
@@ -27,9 +29,19 @@ const routeConfig: Routes = [
       title: 'Sign-Up Page'
     },
     {
-      path: 'favorites',
+      path: 'favorite',
       component: FavoriteComponent,
-      title: 'Favorites Page'
+      title: 'Favorite Page'
+    },
+    {
+      path: 'cart',
+      component: CartComponent,
+      title: 'Cart Page'
+    },
+    {
+      path: 'orders',
+      component: OrdersComponent,
+      title: 'Orders Page'
     }
 ];
 
