@@ -1,25 +1,25 @@
 from django.db import models
 
+class Category:
+    name = models.CharField()
+
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
-    TYPE_CHOICES = [    #заглушка, надо переделать
-        ('brass', 'Brass'),
-        ('guitars', 'Guitars'),
-    ]
-    
     name = models.CharField(max_length=255)
     price = models.PositiveIntegerField()
     photo = models.ImageField(upload_to='products/photos/')
     sub_photos = models.JSONField()
-    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE())
     description = models.TextField()
     available_units = models.PositiveIntegerField()
     country = models.CharField(max_length=100)
     link = models.URLField()
-    rating = models.FloatField()
     likes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.price} - {self.type}"
     
 class User(models.Model):
     email = models.EmailField()
