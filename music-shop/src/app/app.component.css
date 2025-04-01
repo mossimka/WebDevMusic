@@ -83,3 +83,44 @@ main{
   width: 8vw;
   height: 3.5vh;
 }
+
+footer{
+  background-color: #3c5654;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 2vw 3.5vw;
+}
+footer h4{
+  color: #FFFFFF;
+}
+footer p{
+  color: #FFFFFF;
+}
+footer a{
+  color: #FFFFFF;
+}
+.social-links{
+  display: flex;
+  flex-direction: column;
+  width: 15vw;
+}
+.social{
+  width: 5vh;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-links-div{
+  display: flex;
+  flex-direction: row;
+}
+.social img{
+  width: 3vh;
+  height: 3vh;
+}
+.service-links{
+  display: flex;
+  flex-direction: column;
+}
