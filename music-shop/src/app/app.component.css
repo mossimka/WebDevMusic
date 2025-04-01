@@ -90,6 +90,7 @@ footer{
   display: flex;
   justify-content: space-between;
   padding: 2vw 3.5vw;
+  margin-top: 15vh;
 }
 footer h4{
   color: #FFFFFF;

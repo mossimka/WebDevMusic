@@ -5,7 +5,13 @@ class Product(models.Model):
     price = models.FloatField()
     photo = models.TextField()
 
+
+class User(models.Model):
+    email = models.EmailField()
+    password = models.CharField(255)
+
 class Order(models.Model):
+    userId = models.ForeignKey(User, on_delete=models.CASCADE())
     date = models.DateTimeField()
     products = models.ManyToManyField(Product, through='OrderItem')
 
