@@ -16,8 +16,8 @@ class VacancyAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("id", "user_id", "date", "products")
-    search_fields = ("id", "user_id", "date", "products")
+    list_display = ("id", "user", "date")
+    search_fields = ("id", "user", "date")
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
