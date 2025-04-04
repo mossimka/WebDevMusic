@@ -58,7 +58,7 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def save(self, *args, **kwargs):
-        if not self.pk: # Если это новый объект
+        if not self.pk: # if it's a new object
              self.price = self.product.price
         super().save(*args, **kwargs)
 
