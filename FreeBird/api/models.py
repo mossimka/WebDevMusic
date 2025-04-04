@@ -20,13 +20,14 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.price} - {self.type}"
-    
+
 class User(models.Model):
     email = models.EmailField()
     password = models.CharField(255)
+    role = models.CharField(100)
 
 class Order(models.Model):
-    userId = models.ForeignKey(User, on_delete=models.CASCADE())
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField()
     products = models.ManyToManyField(Product, through='OrderItem')
 
