@@ -19,6 +19,21 @@ To get a local copy up and running, follow these simple steps:
     ```sh
     cd WebDevMusic
     ```
+3. Activate virtual environment:
+   ```sh
+   .venv\Scripts\Activate
+    ```
+5. Start django server:
+   ```sh
+   cd FreeBird
+   py manage.py runserver
+    ```
+6. Start angular server:
+   Go to root folder
+   ```sh
+   cd music-shop
+   ng serve
+   ```
 
 ## Authors
 
