@@ -1,28 +1,29 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { MusicsService } from '../musics.service';
+import { ProductService } from '../services/product.service';
 import { Product } from '../product';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-details',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './details.component.html',
-  styleUrl: `details.component.css`
+  styleUrls: ['./details.component.css']
 })
-export class DetailsComponent {
-  route: ActivatedRoute = inject(ActivatedRoute);
-  musicsService = inject(MusicsService);
+export class DetailsComponent implements OnInit {
+  route = inject(ActivatedRoute);
+  productService = inject(ProductService);
   product: Product | undefined;
   shareLinks: { telegram: string; whatsapp: string } | undefined;
 
-  constructor() {
-    const musicItemsId = Number(this.route.snapshot.params['id']);
-    this.musicsService.getProductById(musicItemsId).then(product => {
+  ngOnInit(): void {
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    this.productService.getProductById(productId).subscribe((product: Product) => {
       this.product = product;
-      if (this.product?.link) {
-        this.shareLinks = this.generateShareLinks(this.product.link);
+      if (product?.link) {
+        this.shareLinks = this.generateShareLinks(product.link);
       }
     });
   }

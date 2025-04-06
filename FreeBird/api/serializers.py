@@ -7,12 +7,24 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('id', 'name')
 
+from rest_framework import serializers
+from django.urls import reverse
+
 class ProductSerializer(serializers.ModelSerializer):
+    photo_url = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
-        model =Product
-        fields = ('id', 'name', 'price', 'photo',
-                  'sub_photos', 'category', 'description', 'available_units',
+        model = Product
+        fields = ('id', 'name', 'price', 'photo', 'photo_url',
+                  'category', 'description', 'available_units',
                   'country', 'link', 'likes')
+
+    def get_photo_url(self, obj):
+        if obj.photo:
+            return self.context['request'].build_absolute_uri(obj.photo.url)
+        else:
+            return None
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

@@ -7,7 +7,7 @@ import {FavoriteComponent} from './favorite/favorite.component';
 import {CartComponent} from './cart/cart.component';
 import {OrdersComponent} from './orders/orders.component';
 
-const routeConfig: Routes = [
+export const routes: Routes = [
     {
         path: '',
         component: ContentComponent,
@@ -44,5 +44,3 @@ const routeConfig: Routes = [
       title: 'Orders Page'
     }
 ];
-
-export default routeConfig;

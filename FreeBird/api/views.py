@@ -31,6 +31,14 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.select_related('category').all()
     serializer_class = ProductSerializer
 
+    def get_serializer_context(self):
+        """
+        Extra context provided to the serializer class.
+        """
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     GET: /api/products/{id}/

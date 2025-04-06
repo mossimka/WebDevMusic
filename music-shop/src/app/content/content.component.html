@@ -6,7 +6,11 @@
 </section>
 <section class="categories">
   <div *ngFor="let category of categories">
-    <button class="category-button" [class.active]="selectedCategories.includes(category)" (click)="toggleCategory(category)">{{category}}</button>
+    <button
+      [class.selected]="selectedCategories.includes(category.name)"
+      (click)="toggleCategory(category.name)">
+      {{ category.name }}
+    </button>
   </div>
 </section>
 <div class="div-results">

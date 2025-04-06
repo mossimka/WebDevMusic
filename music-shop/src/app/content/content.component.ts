@@ -2,32 +2,37 @@ import { Component, inject, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../product';
 import { ShopItemsComponent } from '../shop-items/shop-items.component';
-import { MusicsService } from '../musics.service';
+import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
+import {CategoryService} from '../services/category.service';
+import {Category} from '../category';
 
 @Component({
   selector: 'app-content',
+  standalone: true,
   imports: [ShopItemsComponent, CommonModule, FormsModule],
   templateUrl: './content.component.html',
-  styleUrl: `./content.component.css`,
+  styleUrls: ['./content.component.css'],
 })
 export class ContentComponent {
   productsList: Product[] = [];
-  musicService: MusicsService = inject(MusicsService);
+  productService: ProductService = inject(ProductService);
+  categoryService: CategoryService = inject(CategoryService);
   filteredProductsList: Product[] = [];
-  filter: string;
-  categories: string[] = [];
+  filter: string  = "";
+  categories: Category[] = [];
   selectedCategories: string[] = [];
 
-  constructor() {
-    this.musicService.getAllProducts().then((productsList: Product[]) => {
-      this.productsList = productsList;
-      this.filteredProductsList = productsList;
-    });
+  constructor() {}
+
+  ngOnInit() {
     this.filter = '';
-    this.musicService.getAllCategories().then(cats => {
-      this.categories = cats;
-      console.log(this.categories);
+    this.productService.getProducts().subscribe((products: Product[]) => {
+      this.productsList = products;
+      this.filteredProductsList = products;
+    });
+    this.categoryService.getCategories().subscribe((categories: Category[]) => {
+      this.categories = categories;
     });
   }
 
