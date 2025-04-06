@@ -40,11 +40,11 @@
     background-color: #dfd9d0;
     font-weight: 550;
 }
-.category-button.active{
+.category-button.selected{
     background-color: #e1c69b;
     font-weight: 550;
 }
-.category-button.active:hover{
+.category-button.selected:hover{
     background-color: #dfd9d0;
     font-weight: 400;
 }
