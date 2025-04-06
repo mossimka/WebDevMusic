@@ -7,15 +7,12 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('id', 'name')
 
-from rest_framework import serializers
-from django.urls import reverse
-
 class ProductSerializer(serializers.ModelSerializer):
     photo_url = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'price', 'photo', 'photo_url',
+        fields = ('id', 'name', 'price', 'photo', 'photo_url', 'sub_photos',
                   'category', 'description', 'available_units',
                   'country', 'link', 'likes')
 
