@@ -5,7 +5,7 @@ export interface Product {
     photo: string;
     photo_url: string;
     subPhotos: string[];
-    type: string;
+    category: number;
     description: string;
     availableUnits: number;
     country: string;

@@ -7,8 +7,8 @@
 <section class="categories">
   <div *ngFor="let category of categories">
     <button
-      [class.selected]="selectedCategories.includes(category.name)"
-      (click)="toggleCategory(category.name)">
+      [class.selected]="selectedCategories.includes(category.id)"
+      (click)="toggleCategory(category)">
       {{ category.name }}
     </button>
   </div>

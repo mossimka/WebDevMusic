@@ -1,11 +1,11 @@
-import { Component, inject, Output, EventEmitter } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../product';
 import { ShopItemsComponent } from '../shop-items/shop-items.component';
 import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
-import {CategoryService} from '../services/category.service';
-import {Category} from '../category';
+import { CategoryService } from '../services/category.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-content',
@@ -19,9 +19,9 @@ export class ContentComponent {
   productService: ProductService = inject(ProductService);
   categoryService: CategoryService = inject(CategoryService);
   filteredProductsList: Product[] = [];
-  filter: string  = "";
+  filter: string = "";
   categories: Category[] = [];
-  selectedCategories: string[] = [];
+  selectedCategories: number[] = [];
 
   constructor() {}
 
@@ -29,66 +29,53 @@ export class ContentComponent {
     this.filter = '';
     this.productService.getProducts().subscribe((products: Product[]) => {
       this.productsList = products;
-      this.filteredProductsList = products;
+      this.filteredProductsList = [...products]; // Initialize with a copy
     });
     this.categoryService.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
     });
   }
 
-  filterResults(text:string) {
-    if (!text) {
-      this.applyFilters();
-      return;
-    }
-
-    this.filteredProductsList = this.productsList.filter(product =>
-      product?.name.toLowerCase().includes(text.toLowerCase())
-    );
-    this.applyCategoryFilter();
+  filterResults(text: string) {
+    this.filter = text; // Update the filter property
+    this.applyFilters();
   }
-  toggleCategory(category: string) {//switching category
-    const index = this.selectedCategories.indexOf(category);
+
+  toggleCategory(category: Category) { // Change parameter type to Category
+    const index = this.selectedCategories.indexOf(category.id);
     if (index > -1) {
       this.selectedCategories.splice(index, 1);
     } else {
-      this.selectedCategories.push(category);
+      this.selectedCategories.push(category.id);
     }
+    console.log('Toggled Category:', category, 'Selected Categories:', this.selectedCategories);
     this.applyFilters();
   }
+
   private applyFilters() {
-    let filtered = this.productsList;
+    let filtered = [...this.productsList];
 
     if (this.filter) {
       filtered = filtered.filter(product =>
-        product?.name.toLowerCase().includes(this.filter.toLowerCase())
+        product?.name?.toLowerCase().includes(this.filter.toLowerCase())
       );
     }
 
     if (this.selectedCategories.length > 0) {
-      filtered = filtered.filter(product =>
-        this.selectedCategories.includes(product.type)
-      );
+      filtered = filtered.filter(product => {
+        const productCategoryId = product.category; // Get the category ID
+        const isSelected = this.selectedCategories.includes(productCategoryId); // Compare IDs
+
+        console.log(`Filtering: Product Category ID: ${productCategoryId}, Selected Category IDs:`, this.selectedCategories, `Match:`, isSelected);
+
+        return isSelected;
+      });
     }
     this.filteredProductsList = filtered;
   }
-  private applyCategoryFilter() {
-    if (this.selectedCategories.length === 0) {
-      return;
-    }
-    this.filteredProductsList = this.filteredProductsList.filter(product =>
-      this.selectedCategories.includes(product.type)
-    );
-  }
+
   onProductRemoved(productId: Number) {
-    const productIndex = this.productsList.findIndex(p => p.id === productId);
-    if (productIndex > -1) {
-      this.productsList.splice(productIndex, 1);
-    }
-    const filteredIndex = this.filteredProductsList.findIndex(p => p.id === productId);
-    if (filteredIndex > -1) {
-      this.filteredProductsList.splice(filteredIndex, 1);
-    }
+    this.productsList = this.productsList.filter(p => p.id !== productId);
+    this.filteredProductsList = this.filteredProductsList.filter(p => p.id !== productId);
   }
 }
-
