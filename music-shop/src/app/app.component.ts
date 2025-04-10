@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ShopItemsComponent } from "./shop-items/shop-items.component";
-import { Product } from './interfaces/product';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +12,32 @@ import {HttpClientModule} from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'music-shop';
-
   logged_in = false;
   isPopupVisible = false;
+  private loggedInSubscription: Subscription | undefined;
 
-  log(){
-    this.logged_in = !this.logged_in;
+  constructor(private userService: UserService, private router: Router) {} // Changed to UserService
+
+  ngOnInit() {
+    this.loggedInSubscription = this.userService.loggedIn$.subscribe(
+      (loggedIn:boolean) => {
+        this.logged_in = loggedIn;
+      }
+    );
   }
+
+  ngOnDestroy() {
+    if (this.loggedInSubscription) {
+      this.loggedInSubscription.unsubscribe();
+    }
+  }
+
+  sign_out() {
+    this.userService.logout(); // Changed to UserService
+  }
+
   popUp() {
     this.isPopupVisible = !this.isPopupVisible;
   }
