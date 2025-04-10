@@ -135,3 +135,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
 ]
+
+AUTH_USER_MODEL = 'api.User'

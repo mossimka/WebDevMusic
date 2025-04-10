@@ -11,8 +11,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ("id", "email", "role")
-    search_fields = ("id", "email", "role")
+    list_display = ("id", "email")
+    search_fields = ("id", "email")
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
