@@ -5,13 +5,13 @@ import {
   HttpRequest,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { UserService } from './services/user.service'; // Changed to UserService
+import { AuthService } from './services/auth.service'; // Changed to UserService
 import { catchError, switchMap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private userService: UserService) {} // Changed to UserService
+  constructor(private authService: AuthService) {} // Changed to UserService
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const access = localStorage.getItem('access');
@@ -37,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const refresh = localStorage.getItem('refresh');
 
     if (refresh) {
-      return this.userService.refreshToken({ refresh: refresh }).pipe( // Changed to UserService
+      return this.authService.refreshToken({ refresh: refresh }).pipe(
         switchMap((token: any) => {
           return next.handle(
             req.clone({
@@ -47,7 +47,7 @@ export class AuthInterceptor implements HttpInterceptor {
         })
       );
     } else {
-      this.userService.logout(); // Changed to UserService
+      this.authService.logout();
       return throwError('No refresh token');
     }
   }

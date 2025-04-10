@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,10 +18,10 @@ export class AppComponent implements OnInit, OnDestroy {
   isPopupVisible = false;
   private loggedInSubscription: Subscription | undefined;
 
-  constructor(private userService: UserService, private router: Router) {} // Changed to UserService
+  constructor(private authService: AuthService, private router: Router) {} // Changed to UserService
 
   ngOnInit() {
-    this.loggedInSubscription = this.userService.loggedIn$.subscribe(
+    this.loggedInSubscription = this.authService.loggedIn$.subscribe(
       (loggedIn:boolean) => {
         this.logged_in = loggedIn;
       }
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   sign_out() {
-    this.userService.logout(); // Changed to UserService
+    this.authService.logout();
   }
 
   popUp() {

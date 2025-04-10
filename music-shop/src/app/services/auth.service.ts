@@ -8,7 +8,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService { // Changed to UserService
+export class AuthService { // Changed to UserService
   private loggedInSubject = new BehaviorSubject<boolean>(this.checkLoggedIn());
   public loggedIn$: Observable<boolean> = this.loggedInSubject.asObservable();
   private loginUrl = 'http://127.0.0.1:8000/api/login/';

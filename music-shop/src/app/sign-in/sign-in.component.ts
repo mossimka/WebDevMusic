@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service'; // Changed to UserService
+import { AuthService } from '../services/auth.service'; // Changed to AuthService
 import { Token } from '../interfaces/token';
 
 @Component({
@@ -14,10 +14,10 @@ import { Token } from '../interfaces/token';
 export class SignInComponent {
   authModel: any = {};
 
-  constructor(private userService: UserService, private router: Router) {} // Changed to UserService
+  constructor(private userService: AuthService, private router: Router) {} // Changed to AuthService
 
   login() {
-    this.userService.login(this.authModel).subscribe(() => { // Changed to UserService
+    this.userService.login(this.authModel).subscribe(() => { // Changed to AuthService
       this.router.navigate(['/']);
     });
   }
