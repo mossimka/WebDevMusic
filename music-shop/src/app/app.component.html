@@ -14,7 +14,7 @@
         <img class="user-img" src="assets/user.png" (click)="popUp()">
         <section class="pop-up" *ngIf="isPopupVisible">
           <button [routerLink]="['/orders']">Orders</button>
-          <button>Sign out</button>
+          <button (click)="sign_out()">Sign out</button>
         </section>
       </div>
     </div>
@@ -24,7 +24,6 @@
   <section class="results">
     <router-outlet></router-outlet>
   </section>
-  <input class="temp-tumbler" type="checkbox" (click)="log()">
 </main>
 <footer>
   <div>

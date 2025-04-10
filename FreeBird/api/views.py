@@ -1,5 +1,7 @@
 # views.py
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+
 from .models import Product, User, Category, Order, OrderItem
 from .serializers import (
     ProductSerializer, UserSerializer, CategorySerializer,
@@ -13,6 +15,11 @@ class CategoryListCreateAPIView(generics.ListCreateAPIView):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    def get_permissons(self):
+        if self.request.method == 'POST':
+            return (IsAdminUser(),)
+        return (AllowAny(),)
 
 class CategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -30,14 +37,6 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     """
     queryset = Product.objects.select_related('category').all()
     serializer_class = ProductSerializer
-
-    def get_serializer_context(self):
-        """
-        Extra context provided to the serializer class.
-        """
-        context = super().get_serializer_context()
-        context.update({"request": self.request})
-        return context
 
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """

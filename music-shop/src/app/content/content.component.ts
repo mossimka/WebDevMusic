@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from '../product';
+import { Product } from '../interfaces/product';
 import { ShopItemsComponent } from '../shop-items/shop-items.component';
 import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
-import { Category } from '../category';
+import { Category } from '../interfaces/category';
 
 @Component({
   selector: 'app-content',
