@@ -2,11 +2,11 @@
 <div class="sign-in-div">
   <form class="sign-in-form">
     <label>Login</label>
-    <input type="email" placeholder="Email">
+    <input type="email" placeholder="Email" [(ngModel)]="authModel.email" name="email">
     <label>Password</label>
-    <input type="password" placeholder="Password">
+    <input type="password" placeholder="Password" [(ngModel)]="authModel.password" name="password">
   </form>
-  <button class="primary">Sign in</button>
+  <button class="primary" (click)="login()">Sign in</button>
   <a class="link" [routerLink]="'../sign-up'">Sign up</a>
   <p>© FreeBird 2025</p>
 </div>
