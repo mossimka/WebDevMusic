@@ -9,11 +9,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "price", "category", "available_units")
     search_fields = ("id", "name", "category")
 
-@admin.register(User)
-class VacancyAdmin(admin.ModelAdmin):
-    list_display = ("id", "email", "first_name", "last_name")
-    search_fields = ("id", "email", "first_name", "last_name")
-
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "date")
