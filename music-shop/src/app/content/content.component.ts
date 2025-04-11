@@ -6,6 +6,8 @@ import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../interfaces/category';
+import {User} from '../interfaces/user';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-content',
@@ -22,10 +24,15 @@ export class ContentComponent {
   filter: string = "";
   categories: Category[] = [];
   selectedCategories: number[] = [];
+  user: User | null = null;
+  authService: AuthService = inject(AuthService);
 
   constructor() {}
 
   ngOnInit() {
+    this.authService.getCurrentUser().subscribe((data) => {
+        this.user = data;
+    });
     this.filter = '';
     this.productService.getProducts().subscribe((products: Product[]) => {
       this.productsList = products;

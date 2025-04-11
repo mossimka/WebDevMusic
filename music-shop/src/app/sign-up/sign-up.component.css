@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-around;
   width: 50vw;
-  height: 60vh;
+  height: 70vh;
   background-color: #7a9794;
   border: 1px solid #3c5654;
   border-radius: 10px;
@@ -21,7 +21,11 @@
   flex-direction: column;
   justify-content: space-around;
   width: 20vw;
-  height: 35vh;
+  height: 55vh;
+}
+
+.sign-up-form{
+
 }
 
 .link{

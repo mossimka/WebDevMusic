@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
-from .views import PublicUserCreateAPIView
+from .views import PublicUserCreateAPIView, CurrentUserAPIView, ValidateTokenView
 
 urlpatterns = [
     path('categories', views.CategoryListCreateAPIView.as_view(), name='category-list-create'),
@@ -22,6 +22,9 @@ urlpatterns = [
 
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
+    path("validate_token/", ValidateTokenView.as_view(), name="validate-token"),
 
-    path('sign-up/', PublicUserCreateAPIView.as_view())
+    path('sign-up/', PublicUserCreateAPIView.as_view()),
+
+    path('me/', CurrentUserAPIView.as_view(), name='current-user'),
 ]

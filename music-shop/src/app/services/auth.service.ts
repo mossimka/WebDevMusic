@@ -4,6 +4,9 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Token } from '../interfaces/token';
 import { catchError, tap, map } from 'rxjs/operators';
+import {User} from '../interfaces/user';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -68,5 +71,9 @@ export class AuthService { // Changed to UserService
 
   validateTokenOnStart() {
     this.validateToken().subscribe();
+  }
+
+  getCurrentUser(): Observable<User> {
+    return this.client.get<User>('http://localhost:8000/api/me/');
   }
 }

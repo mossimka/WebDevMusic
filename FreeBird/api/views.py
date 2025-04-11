@@ -1,6 +1,8 @@
 # views.py
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from .models import Product, User, Category, Order, OrderItem
 from .serializers import (
@@ -75,6 +77,14 @@ class UserRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
+class CurrentUserAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+
+
 class OrderListCreateAPIView(generics.ListCreateAPIView):
     """
     GET: /api/orders/
@@ -120,3 +130,9 @@ class OrderItemRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIVie
     """
     queryset = OrderItem.objects.select_related('order', 'product').all()
     serializer_class = OrderItemSerializer
+
+class ValidateTokenView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"detail": "Token is valid"})
