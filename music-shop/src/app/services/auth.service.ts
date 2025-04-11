@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Token } from '../interfaces/token';
@@ -18,7 +18,8 @@ export class AuthService { // Changed to UserService
   private refreshTokenUrl = 'http://127.0.0.1:8000/api/refresh/';
   private validateTokenURL = 'http://127.0.0.1:8000/api/validate_token/';
 
-  constructor(private client: HttpClient, private router: Router) {
+  private client = inject(HttpClient);
+  constructor(private router: Router) {
     this.validateTokenOnStart();
   }
 
@@ -74,6 +75,16 @@ export class AuthService { // Changed to UserService
   }
 
   getCurrentUser(): Observable<User> {
-    return this.client.get<User>('http://localhost:8000/api/me/');
+    const accessToken: string | null = localStorage.getItem('access');
+
+    let headers = new HttpHeaders();
+    if (accessToken) {
+      headers = headers.set('Authorization', `Bearer ${accessToken}`);
+    }
+
+    return this.client.get<User>('http://localhost:8000/api/me/', {
+      headers: headers,
+      responseType: 'json'
+    });
   }
 }

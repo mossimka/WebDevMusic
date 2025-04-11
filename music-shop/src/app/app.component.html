@@ -6,13 +6,14 @@
       <button class="primary" id="sign_up" [routerLink]="['/sign-up']">Sign up</button>
     </section>
     <div class="logged" *ngIf="logged_in">
-      <div>
+      <div class="logged-buttons">
         <button class="primary" [routerLink]="['/cart']">Cart</button>
         <button class="primary" [routerLink]="['/favorite']">Favorite</button>
       </div>
       <div id="user">
         <img class="user-img" src="assets/user.png" (click)="popUp()">
         <section class="pop-up" *ngIf="isPopupVisible">
+          <h4 *ngIf="user?.username">{{user?.username}}</h4>
           <button [routerLink]="['/orders']">Orders</button>
           <button (click)="sign_out()">Sign out</button>
         </section>

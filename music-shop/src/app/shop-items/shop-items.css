@@ -25,9 +25,21 @@
     justify-content: center;
     align-items: center;
 }
-.listing-photo{
-    margin-top: 5px;
-    height: 33vh;
+.listing-photo-div {
+  margin-top: 5px;
+  width: 100%;
+  height: 33vh;
+  overflow: hidden;
+  background-color: #fff;
+  position: relative;
+}
+
+.listing-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* CHANGE THIS to contain */
+  object-position: center;
+  display: block; /* Good practice */
 }
 .listing-info{
     display: flex;
@@ -42,16 +54,6 @@
     width: 10vw;
 }
 
-.actions{
-    display: flex;
-    justify-content: space-between;
-    width: 22vw;
-}
-.likes{
-    position: relative; 
-    display: flex;
-    align-items: center;
-}
 .likes:hover{
     cursor: pointer;
     color: black;
@@ -65,4 +67,26 @@
 .remove:hover{
     color: black;
     cursor: pointer;
+}
+
+.actions {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.likes {
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.likes img {
+  width: 20px; /* Adjust size */
+  height: 20px;
+  margin-right: 5px;
 }

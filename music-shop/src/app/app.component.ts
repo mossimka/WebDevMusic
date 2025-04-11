@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
+import {User} from './interfaces/user';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,15 @@ export class AppComponent implements OnInit, OnDestroy {
   isPopupVisible = false;
   private loggedInSubscription: Subscription | undefined;
 
-  constructor(private authService: AuthService, private router: Router) {} // Changed to UserService
+  user: User | null = null;
+  authService: AuthService = inject(AuthService);
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
+    this.authService.getCurrentUser().subscribe((data) => {
+        this.user = data;
+    });
     this.loggedInSubscription = this.authService.loggedIn$.subscribe(
       (loggedIn:boolean) => {
         this.logged_in = loggedIn;

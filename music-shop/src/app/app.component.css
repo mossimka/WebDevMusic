@@ -56,7 +56,12 @@ main{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 17vh;
+  width: 25vh;
+}
+.logged-buttons{
+  widht: 10vw;
+  display: flex;
+  justify-content: space-between;
 }
 #user{
   justify-content: center;
@@ -74,8 +79,8 @@ main{
   align-items: center;
   justify-content: space-around;
   background-color: #ffffff;
-  height: 10vh;
-  width: 10vw;
+  height: 14vh;
+  width: 14vw;
   border-radius: 10px;
   border: 1px solid #7a9794;
 }
