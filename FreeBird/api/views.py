@@ -48,6 +48,14 @@ class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
     serializer_class = ProductSerializer
     # permission_classes = [IsAdminUser] # Пример
 
+class PublicUserCreateAPIView(generics.CreateAPIView):
+    """
+    POST: /api/sign-up/
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
 class UserListCreateAPIView(generics.ListCreateAPIView):
     """
     GET: /api/users/

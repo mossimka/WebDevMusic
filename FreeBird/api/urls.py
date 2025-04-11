@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
+from .views import PublicUserCreateAPIView
+
 urlpatterns = [
     path('categories', views.CategoryListCreateAPIView.as_view(), name='category-list-create'),
     path('categories/<int:pk>', views.CategoryRetrieveUpdateDestroyAPIView.as_view(), name='category-detail'),
@@ -20,4 +22,6 @@ urlpatterns = [
 
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
+
+    path('sign-up/', PublicUserCreateAPIView.as_view())
 ]
