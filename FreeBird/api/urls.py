@@ -17,8 +17,8 @@ urlpatterns = [
     path('orders', views.OrderListCreateAPIView.as_view(), name='order-list-create'),
     path('orders/<int:pk>', views.OrderRetrieveUpdateDestroyAPIView.as_view(), name='order-detail'),
 
-    path('order-items', views.OrderItemListCreateAPIView.as_view(), name='orderitem-list-create'),
-    path('order-items/<int:pk>', views.OrderItemRetrieveUpdateDestroyAPIView.as_view(), name='orderitem-detail'),
+    path('orders/<int:pk>/items', views.OrderItemListCreateAPIView.as_view(), name='orderitem-list-create'),
+    path('orders/<int:pk>/items/<int:pk>', views.OrderItemRetrieveUpdateDestroyAPIView.as_view(), name='orderitem-detail'),
 
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
@@ -27,4 +27,8 @@ urlpatterns = [
     path('sign-up/', PublicUserCreateAPIView.as_view()),
 
     path('me/', CurrentUserAPIView.as_view(), name='current-user'),
+
+    path('cart/', views.CartDetailView.as_view(), name='cart-detail'),
+    path('cart/items/', views.CartItemListCreateView.as_view(), name='cartitem-list-create'),
+    path('cart/items/<int:item_id>/', views.CartItemDetailView.as_view(), name='cartitem-detail'),
 ]

@@ -59,7 +59,7 @@ main{
   width: 25vh;
 }
 .logged-buttons{
-  widht: 10vw;
+  width: 10vw;
   display: flex;
   justify-content: space-between;
 }

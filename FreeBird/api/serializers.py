@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Product, Category, Order, OrderItem, User
+from .models import Product, Category, Order, OrderItem, User, CartItem, Cart
+
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,12 +36,39 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
-class OrderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Order
-        fields = ('id', 'user_id', 'date')
-
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model= OrderItem
-        fields = ('id', 'order', 'product', 'quantity', 'price')
+        fields = ('id', 'product', 'quantity', 'price', 'total_item_price')
+
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+    class Meta:
+        model = Order
+        fields = ('id', 'user', 'date', 'items', 'total_order_price')
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    product_name = serializers.CharField(source='product.name', read_only=True)
+    item_total_price = serializers.DecimalField(source='total_item_price', read_only=True, max_digits=10, decimal_places=2)
+    product_price = serializers.IntegerField(source='product.price', read_only=True)
+
+    class Meta:
+        model = CartItem
+        fields = ('id', 'product', 'product_name', 'product_price', 'quantity', 'item_total_price')
+        read_only_fields = ('id', 'item_total_price', 'product_name', 'product_price')
+
+    def validate_quantity(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("Quantity must be an positive number.")
+        return value
+
+
+class CartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True, read_only=True)
+    total_cart_price = serializers.DecimalField(source='total_price', read_only=True, max_digits=10, decimal_places=2)
+    user = UserSerializer(read_only=True)
+    class Meta:
+        model = Cart
+        fields = ('id', 'user', 'items', 'total_cart_price', 'created_at', 'updated_at')
+        read_only_fields = ('id', 'user', 'items', 'total_cart_price', 'created_at', 'updated_at')
