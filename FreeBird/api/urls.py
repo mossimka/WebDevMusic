@@ -17,8 +17,10 @@ urlpatterns = [
     path('orders', views.OrderListCreateAPIView.as_view(), name='order-list-create'),
     path('orders/<int:pk>', views.OrderRetrieveUpdateDestroyAPIView.as_view(), name='order-detail'),
 
-    path('orders/<int:pk>/items', views.OrderItemListCreateAPIView.as_view(), name='orderitem-list-create'),
-    path('orders/<int:pk>/items/<int:pk>', views.OrderItemRetrieveUpdateDestroyAPIView.as_view(), name='orderitem-detail'),
+    path('orders/<int:order_id>/items', views.OrderItemListCreateAPIView.as_view(), name='orderitem-list-create'),
+    # Corrected version:
+    path('orders/<int:order_id>/items/<int:item_id>/', views.OrderItemRetrieveUpdateDestroyAPIView.as_view(),
+         name='orderitem-detail'),
 
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),

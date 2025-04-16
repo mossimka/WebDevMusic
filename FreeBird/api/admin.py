@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, User, Order, Category
+from .models import Product, User, Order, Category, Cart
 
 
 # Register your models here.
@@ -17,3 +17,8 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "name")
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ("id", "user")
+    search_fields = ("id", "user")

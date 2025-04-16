@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 
 import { ProductService } from '../services/product.service';
 import { Product } from '../interfaces/product';
+import {CartButtonComponent} from '../Buttons/cart-button/cart-button.component';
 
 @Component({
   selector: 'app-shop-items',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, CartButtonComponent],
   templateUrl: 'shop-items.component.html',
   styleUrl: `./shop-items.css`,
 })

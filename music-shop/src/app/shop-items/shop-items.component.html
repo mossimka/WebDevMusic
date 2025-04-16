@@ -11,6 +11,10 @@
     <h2 class="listing-heading"> {{ product.name }} </h2>
     <h3>☆ {{product.rating}}</h3>
     <p class="lisitng-price"> {{ product.price }} ₸ </p>
-    <button class="primary" [routerLink]="['/details', product.id]">View Details</button>
+    <div class="listing-react">
+      <button class="primary" [routerLink]="['/details', product.id]">View Details</button>
+      <app-cart-button [productId]="product.id"></app-cart-button>
+    </div>
+
   </div>
 </section>

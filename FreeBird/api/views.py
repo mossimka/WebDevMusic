@@ -21,7 +21,7 @@ class CategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-    def get_permissons(self):
+    def get_permissions(self):
         if self.request.method == 'POST':
             return (IsAdminUser(),)
         return (AllowAny(),)
@@ -51,7 +51,6 @@ class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
     """
     queryset = Product.objects.select_related('category').all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAdminUser] # Пример
 
 class PublicUserCreateAPIView(generics.CreateAPIView):
     """
@@ -204,7 +203,9 @@ class CartItemListCreateView(generics.ListCreateAPIView):
         return CartItem.objects.filter(cart=cart).select_related('product')
 
     def create(self, request, *args, **kwargs):
-        cart = get_object_or_404(Cart, user=request.user)
+        # Use get_or_create to ensure a cart exists
+        cart, cart_created = Cart.objects.get_or_create(user=request.user) # <-- FIX HERE
+
         product = get_object_or_404(Product, pk=request.data.get('product'))
         quantity = int(request.data.get('quantity', 1))
 
@@ -220,13 +221,13 @@ class CartItemListCreateView(generics.ListCreateAPIView):
                  status=status.HTTP_400_BAD_REQUEST
              )
 
-        cart_item, created = CartItem.objects.get_or_create(
+        cart_item, item_created = CartItem.objects.get_or_create( # renamed 'created' variable
             cart=cart,
             product=product,
             defaults={'quantity': quantity}
         )
 
-        if not created:
+        if not item_created: # Use the renamed variable
             new_quantity = cart_item.quantity + quantity
             if product.available_units < new_quantity:
                  return Response(
@@ -238,7 +239,8 @@ class CartItemListCreateView(generics.ListCreateAPIView):
 
         serializer = self.get_serializer(cart_item)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED if created else status.HTTP_200_OK, headers=headers)
+        # Use item_created here
+        return Response(serializer.data, status=status.HTTP_201_CREATED if item_created else status.HTTP_200_OK, headers=headers)
 
 
 class CartItemDetailView(generics.RetrieveUpdateDestroyAPIView):
