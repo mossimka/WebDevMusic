@@ -105,9 +105,8 @@ class Favorite(models.Model):
     added_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        # Ensures user cannot favorite the same product twice
         unique_together = ('user', 'product')
-        ordering = ['-added_on'] # Show newest favorites first
+        ordering = ['-added_on']
 
     def __str__(self):
         return f'{self.user.username} likes {self.product.name}'

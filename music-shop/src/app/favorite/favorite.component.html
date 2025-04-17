@@ -1,10 +1,10 @@
-<h2>Избранные товары</h2>
+<h2>Favorite items:</h2>
 
-<div *ngIf="loading" class="loading-indicator">Загрузка...</div>
+<div *ngIf="loading" class="loading-indicator">Loading...</div>
 
 <div *ngIf="error && !loading" class="error-message">
-  <p><strong>Ошибка:</strong> {{ error }}</p>
-  <button (click)="retryLoad()" class="btn-retry">Попробовать снова</button>
+  <p><strong>Error:</strong> {{ error }}</p>
+  <button (click)="retryLoad()" class="btn-retry">Try again</button>
 </div>
 
 <ng-container *ngIf="!loading && !error">
@@ -20,11 +20,11 @@
 
 <ng-template #noFavoritesTemplate>
   <div class="no-favorites">
-    <p>Здесь пока пусто.</p>
+    <p>Now it's empty.</p>
     <p>
-      Добавляйте товары в избранное с помощью
+      Add items to your favorites by using
       <span class="heart-icon">❤️</span>.
     </p>
-    <a routerLink="/" class="btn-link">В каталог</a>
+    <a routerLink="/" class="btn-link">Go back to main page</a>
   </div>
 </ng-template>

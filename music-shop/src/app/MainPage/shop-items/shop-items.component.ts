@@ -21,93 +21,65 @@ export class ShopItemsComponent {
 
   liked = false;
 
-  like() {
-    if (!this.liked) {
-      this.product.likes++;
-      this.liked = true;
-    } else {
-      this.product.likes--;
-      this.liked = false;
-    }
-  }
-  remove() {
-    this.productRemoved.emit(this.product.id);
-  }
-
-  // Инъекция новых сервисов
   private favoriteService = inject(FavoriteService);
-  public authService = inject(AuthService); // public для доступа в шаблоне
+  public authService = inject(AuthService);
 
-  // Локальное состояние для кнопки избранного
   isTogglingFavorite = false;
   favoriteError: string | null = null;
 
-  // Новый метод для переключения избранного
   toggleFavorite(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
 
-    // Используем синхронный геттер isLoggedIn() из AuthService
-    // Убедись, что этот метод действительно есть в твоем локальном auth.service.ts!
     if (!this.authService.isLoggedIn()) {
-      alert('Пожалуйста, войдите в систему.');
+      alert('Please log in.');
       return;
     }
     if (this.isTogglingFavorite || !this.product) {
       return;
-    } // Проверка на продукт
+    }
 
     this.isTogglingFavorite = true;
     this.favoriteError = null;
 
-    // Разделяем логику для добавления и удаления
     if (this.product.is_favorite) {
-      // --- Логика УДАЛЕНИЯ ---
       this.favoriteService.removeFavorite(this.product.id).subscribe({
         next: () => {
           if (this.product) {
-            // Проверка на всякий случай
-            this.product.is_favorite = false; // Обновляем локально
+            this.product.is_favorite = false;
           }
           console.log(`Product ${this.product?.id} removed from favorites`);
           this.isTogglingFavorite = false;
         },
-        // Указываем тип для err
         error: (err: unknown) => {
-          // Можно использовать Error или HttpErrorResponse, если импортировать
           const message =
             err instanceof Error
               ? err.message
-              : 'Не удалось удалить из избранного.';
+              : 'Cannot remove from favorites.';
           console.error('Failed to remove favorite status:', err);
           this.favoriteError = message;
           this.isTogglingFavorite = false;
-          alert(`Ошибка: ${this.favoriteError}`);
+          alert(`Error: ${this.favoriteError}`);
         },
       });
     } else {
-      // --- Логика ДОБАВЛЕНИЯ ---
       this.favoriteService.addFavorite(this.product.id).subscribe({
-        // Можно указать тип для value, если он используется (здесь нет)
         next: (/* fav: Favorite */) => {
           if (this.product) {
-            // Проверка
-            this.product.is_favorite = true; // Обновляем локально
+            this.product.is_favorite = true;
           }
           console.log(`Product ${this.product?.id} added to favorites`);
           this.isTogglingFavorite = false;
         },
-        // Указываем тип для err
         error: (err: unknown) => {
-          // Можно использовать Error или HttpErrorResponse
           const message =
             err instanceof Error
               ? err.message
-              : 'Не удалось добавить в избранное.';
+              : 'Cannot add to favorites.';
           console.error('Failed to add favorite status:', err);
           this.favoriteError = message;
           this.isTogglingFavorite = false;
-          alert(`Ошибка: ${this.favoriteError}`);
+          alert(`Error: ${this.favoriteError}`);
         },
       });
     }

@@ -17,36 +17,30 @@ export class FavoriteService {
     return this._favoritesUpdated.asObservable();
   }
 
-  /** Получить список избранного */
   getFavorites(): Observable<Favorite[]> {
     console.log('FavoriteService: getFavorites START');
     console.log(
       'FavoriteService: Attempting GET request to:',
       `${this.apiUrl}/`
     );
-    // НАПРЯМУЮ возвращаем Observable от HttpClient БЕЗ pipe/catchError здесь
     return this.http.get<Favorite[]>(`${this.apiUrl}/`);
-    // .pipe(catchError(this.handleError)); // <-- Обработка ошибок GET здесь УБРАНА/ЗАКОММЕНТИРОВАНА
   }
 
-  /** Добавить товар в избранное */
   addFavorite(productId: number): Observable<Favorite> {
     const payload: CreateFavorite = { product_id: productId };
     return this.http.post<Favorite>(`${this.apiUrl}/`, payload).pipe(
       tap(() => this._favoritesUpdated.next()),
-      catchError(this.handleError) // Оставим здесь для POST
+      catchError(this.handleError)
     );
   }
 
-  /** Удалить товар из избранного по ID товара */
   removeFavorite(productId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/product/${productId}/`).pipe(
       tap(() => this._favoritesUpdated.next()),
-      catchError(this.handleError) // Оставим здесь для DELETE
+      catchError(this.handleError)
     );
   }
 
-  // Обработчик ошибок (для POST/DELETE)
   private handleError(error: HttpErrorResponse) {
     console.error(
       'Favorite Service: handleError ENTERED (for POST/DELETE)',
@@ -58,9 +52,9 @@ export class FavoriteService {
     } else if (error.status === 400 && error.error?.product_id) {
       errorMessage = error.error.product_id.join(' ');
     } else if (error.status === 401) {
-      errorMessage = 'Требуется авторизация.';
+      errorMessage = 'Authorization is needed';
     } else if (error.status === 404) {
-      errorMessage = 'Ресурс не найден.';
+      errorMessage = "Rosource isn't found.";
     }
     const err = new Error(errorMessage);
     console.error(
