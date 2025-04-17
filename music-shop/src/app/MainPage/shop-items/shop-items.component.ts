@@ -2,9 +2,9 @@ import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { ProductService } from '../services/product.service';
-import { Product } from '../interfaces/product';
-import {CartButtonComponent} from '../Buttons/cart-button/cart-button.component';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../interfaces/product';
+import {CartButtonComponent} from '../../Buttons/cart-button/cart-button.component';
 
 @Component({
   selector: 'app-shop-items',

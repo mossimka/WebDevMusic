@@ -1,0 +1,31 @@
+<ng-container *ngIf="cartItem">
+  <div class="item-details">
+    <img
+      *ngIf="cartItem.product_photo_url"
+      [src]="cartItem.product_photo_url"
+      [alt]="cartItem.product_name" class="item-image"
+    />
+    <div *ngIf="!cartItem.product_photo_url" class="item-image-placeholder">No Image</div>
+
+    <div class="item-info">
+      <h4 class="item-name">{{ cartItem.product_name }}</h4>
+      <p class="item-price">{{ cartItem.product_price | currency }} each</p>
+    </div>
+  </div>
+
+  <div class="item-controls">
+    <div class="quantity-control">
+      <button (click)="decrementQuantity()" [disabled]="cartItem.quantity <= 1">-</button>
+      <span class="quantity-display">{{ cartItem.quantity }}</span>
+      <button (click)="incrementQuantity()">+</button>
+    </div>
+    <div class="item-total-price">
+      Subtotal: {{ cartItem.item_total_price | currency }}
+    </div>
+    <button class="remove-button" (click)="onRemoveClick()">Remove</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!cartItem">
+  <p>Loading item data...</p>
+</ng-container>

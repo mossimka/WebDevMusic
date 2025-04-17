@@ -172,8 +172,6 @@ class CartDetailView(generics.RetrieveDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        # Get the cart for the current user, or create one if it doesn't exist.
-        # This ensures every authenticated user can access a cart object.
         cart, created = Cart.objects.prefetch_related(
             'items', 'items__product'
         ).get_or_create(user=self.request.user)
@@ -203,7 +201,7 @@ class CartItemListCreateView(generics.ListCreateAPIView):
         return CartItem.objects.filter(cart=cart).select_related('product')
 
     def create(self, request, *args, **kwargs):
-        # Use get_or_create to ensure a cart exists
+
         cart, cart_created = Cart.objects.get_or_create(user=request.user) # <-- FIX HERE
 
         product = get_object_or_404(Product, pk=request.data.get('product'))
@@ -259,10 +257,25 @@ class CartItemDetailView(generics.RetrieveUpdateDestroyAPIView):
         return CartItem.objects.filter(cart=cart).select_related('product')
 
     def perform_update(self, serializer):
-        instance = serializer.instance #
+        instance = serializer.instance
         new_quantity = serializer.validated_data.get('quantity', instance.quantity)
 
-        if instance.product.available_units < new_quantity:
-            raise ValidationError(f"Not enough stock for {instance.product.name}. Available: {instance.product.available_units}")
+        print(f"DEBUG: Product ID = {instance.product.id}")  # DEBUG
+        available_stock = instance.product.available_units
+        print(f"DEBUG: Initial available_stock = {available_stock}, type = {type(available_stock)}")  # DEBUG
+        if available_stock is None:
+            print("DEBUG: available_stock was None, setting to 0")  # DEBUG
+            available_stock = 0
+        print(f"DEBUG: Final available_stock = {available_stock}, type = {type(available_stock)}")  # DEBUG
+        print(f"DEBUG: new_quantity = {new_quantity}, type = {type(new_quantity)}")  # DEBUG
+
+        # Comparison line:
+        if available_stock < new_quantity:
+            original_stock_display = instance.product.available_units if instance.product.available_units is not None else 0
+            raise ValidationError(
+                f"Not enough stock for {instance.product.name}. "
+                f"Available: {original_stock_display}"
+            )
+
         serializer.save()
 

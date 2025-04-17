@@ -1,54 +1,68 @@
-import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 import {
-  HttpHandler,
-  HttpInterceptor,
+  HttpInterceptorFn,
   HttpRequest,
+  HttpHandlerFn,
   HttpErrorResponse,
+  HttpEvent
 } from '@angular/common/http';
-import { AuthService } from './services/auth.service'; // Changed to UserService
+import { AuthService } from './services/auth.service';
 import { catchError, switchMap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {} // Changed to UserService
+export const authInterceptorFn: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn // Use HttpHandlerFn
+): Observable<HttpEvent<unknown>> => {
 
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const access = localStorage.getItem('access');
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-    if (access) {
-      req = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${access}`),
-      });
-    }
+  const accessToken = localStorage.getItem('access');
 
-    return next.handle(req).pipe(
-      catchError((error) => {
-        if (error instanceof HttpErrorResponse && error.status === 401) {
-          return this.handle401Error(req, next);
-        } else {
-          return throwError(error);
-        }
-      })
-    );
+  if (accessToken) {
+    req = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${accessToken}`),
+    });
   }
 
-  private handle401Error(req: HttpRequest<any>, next: HttpHandler) {
-    const refresh = localStorage.getItem('refresh');
+  return next(req).pipe(
+    catchError((error) => {
+      if (error instanceof HttpErrorResponse && error.status === 401) {
+        return handle401Error(req, next, authService, router);
+      } else {
+        return throwError(() => error);
+      }
+    })
+  );
+};
 
-    if (refresh) {
-      return this.authService.refreshToken({ refresh: refresh }).pipe(
-        switchMap((token: any) => {
-          return next.handle(
-            req.clone({
-              headers: req.headers.set('Authorization', `Bearer ${token.access}`),
-            })
-          );
-        })
-      );
-    } else {
-      this.authService.logout();
-      return throwError('No refresh token');
-    }
+function handle401Error(
+  req: HttpRequest<any>,
+  next: HttpHandlerFn,
+  authService: AuthService,
+  router: Router
+): Observable<HttpEvent<any>> {
+
+  const refreshToken = localStorage.getItem('refresh');
+
+  if (refreshToken) {
+    return authService.refreshToken({ refresh: refreshToken }).pipe(
+      switchMap((token: any) => {
+        return next(
+          req.clone({
+            headers: req.headers.set('Authorization', `Bearer ${token.access}`),
+          })
+        );
+      }),
+      catchError((refreshError) => {
+        authService.logout();
+        return throwError(() => refreshError);
+      })
+    );
+  } else {
+    authService.logout();
+    return throwError(() => 'No refresh token available');
   }
 }

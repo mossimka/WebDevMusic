@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
-import { ContentComponent } from "./content/content.component";
+import { ContentComponent } from "./MainPage/content/content.component";
 import { DetailsComponent } from "./details/details.component";
-import {SignInComponent} from './sign-in/sign-in.component';
-import {SignUpComponent} from './sign-up/sign-up.component';
+import {SignInComponent} from './SignRegister/sign-in/sign-in.component';
+import {SignUpComponent} from './SignRegister/sign-up/sign-up.component';
 import {FavoriteComponent} from './favorite/favorite.component';
-import {CartComponent} from './cart/cart.component';
+import {CartComponent} from './CartPage/cart/cart.component';
 import {OrdersComponent} from './orders/orders.component';
 
 export const routes: Routes = [

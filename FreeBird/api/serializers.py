@@ -51,16 +51,25 @@ class OrderSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name', read_only=True)
     item_total_price = serializers.DecimalField(source='total_item_price', read_only=True, max_digits=10, decimal_places=2)
-    product_price = serializers.IntegerField(source='product.price', read_only=True)
+    product_price = serializers.DecimalField(source='product.price', read_only=True, max_digits=10, decimal_places=2)
+    product_photo_url = serializers.SerializerMethodField(read_only=True)
+    quantity = serializers.IntegerField(min_value=1)
 
     class Meta:
         model = CartItem
-        fields = ('id', 'product', 'product_name', 'product_price', 'quantity', 'item_total_price')
-        read_only_fields = ('id', 'item_total_price', 'product_name', 'product_price')
+        fields = ('id', 'product', 'product_name', 'product_price', 'product_photo_url', 'quantity', 'item_total_price')
+        read_only_fields = ('id', 'item_total_price', 'product_name', 'product_price', 'product_photo_url')
+
+    def get_product_photo_url(self, obj):
+        if obj.product and obj.product.photo:
+            request = self.context.get('request')
+            if request is not None:
+                return request.build_absolute_uri(obj.product.photo.url)
+        return None
 
     def validate_quantity(self, value):
         if value <= 0:
-            raise serializers.ValidationError("Quantity must be an positive number.")
+             raise serializers.ValidationError("Quantity must be a positive number.")
         return value
 
 

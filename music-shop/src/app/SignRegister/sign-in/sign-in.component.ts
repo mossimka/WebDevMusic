@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'; // Changed to AuthService
-import { Token } from '../interfaces/token';
+import { AuthService } from '../../services/auth.service'; // Changed to AuthService
+import { Token } from '../../interfaces/token';
 
 @Component({
   selector: 'app-sign-in',
