@@ -8,16 +8,14 @@
 </div>
 
 <ng-container *ngIf="!loading && !error">
-  <ng-container *ngIf="favorites$ | async as favorites">
-    <div *ngIf="favorites.length > 0; else noFavoritesTemplate">
-      <div class="favorites-grid">
-        <app-shop-items
-          *ngFor="let fav of favorites"
-          [product]="fav.product"
-        ></app-shop-items>
-      </div>
+  <div *ngIf="favorites.length > 0; else noFavoritesTemplate">
+    <div class="favorites-grid">
+      <app-shop-items
+        *ngFor="let fav of favorites"
+        [product]="fav.product"
+      ></app-shop-items>
     </div>
-  </ng-container>
+  </div>
 </ng-container>
 
 <ng-template #noFavoritesTemplate>
