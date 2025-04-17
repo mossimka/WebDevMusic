@@ -1,0 +1,134 @@
+/* Стили для истории заказов */
+.loading-indicator,
+.error-message,
+.no-orders {
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 4px;
+}
+.error-message {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+}
+.no-orders {
+  color: #777;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+}
+.btn-retry,
+.btn-link {
+  margin-top: 10px;
+  padding: 8px 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-retry {
+  background-color: #5cb85c;
+}
+.btn-retry:hover {
+  background-color: #4cae4c;
+}
+.btn-link {
+  background-color: #337ab7;
+}
+.btn-link:hover {
+  background-color: #286090;
+}
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 auto 20px auto;
+  max-width: 800px;
+  padding: 15px 20px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.order-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+.order-header h3 {
+  margin: 0 10px 5px 0;
+  font-size: 1.15em;
+  color: #333;
+}
+.order-header span {
+  color: #777;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+.order-summary {
+  margin-bottom: 15px;
+  font-size: 1.05em;
+}
+.order-items h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #555;
+}
+.item-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.order-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #eee;
+  font-size: 0.95em;
+}
+.order-item:last-child {
+  border-bottom: none;
+}
+.item-name {
+  flex-basis: 50%;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+.item-details {
+  color: #555;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  flex-basis: 25%;
+  text-align: right;
+}
+.item-total {
+  font-weight: bold;
+  white-space: nowrap;
+  flex-basis: 20%;
+  text-align: right;
+  margin-bottom: 5px;
+}
+@media (max-width: 600px) {
+  .order-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .item-name,
+  .item-details,
+  .item-total {
+    flex-basis: 100%;
+    text-align: left;
+    margin-right: 0;
+  }
+  .item-total {
+    margin-top: 5px;
+  }
+}

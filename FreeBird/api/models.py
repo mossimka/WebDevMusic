@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum, F, PositiveIntegerField
+from django.conf import settings 
 
 
 class Category(models.Model):
@@ -97,3 +98,16 @@ class CartItem(models.Model):
         unique_together = ('cart', 'product')
         ordering = ['id']
 
+# --- NEW MODEL for Favorites ---
+class Favorite(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favorites')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='favorited_by')
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        # Ensures user cannot favorite the same product twice
+        unique_together = ('user', 'product')
+        ordering = ['-added_on'] # Show newest favorites first
+
+    def __str__(self):
+        return f'{self.user.username} likes {self.product.name}'

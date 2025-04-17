@@ -7,10 +7,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Product, User, Category, Order, OrderItem, Cart, CartItem
+from .models import Product, User, Category, Order, OrderItem, Cart, CartItem, Favorite
 from .serializers import (
     ProductSerializer, UserSerializer, CategorySerializer,
-    OrderSerializer, OrderItemSerializer, CartItemSerializer, CartSerializer
+    OrderSerializer, OrderItemSerializer, CartItemSerializer, CartSerializer, FavoriteSerializer
 )
 
 class CategoryListCreateAPIView(generics.ListCreateAPIView):
@@ -43,6 +43,12 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.select_related('category').all()
     serializer_class = ProductSerializer
 
+    def get_serializer_context(self):
+        """Передаем request в контекст сериализатора."""
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     GET: /api/products/{id}/
@@ -51,6 +57,12 @@ class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
     """
     queryset = Product.objects.select_related('category').all()
     serializer_class = ProductSerializer
+    
+    def get_serializer_context(self):
+        """Передаем request в контекст сериализатора."""
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
 
 class PublicUserCreateAPIView(generics.CreateAPIView):
     """
@@ -279,3 +291,62 @@ class CartItemDetailView(generics.RetrieveUpdateDestroyAPIView):
 
         serializer.save()
 
+# --- ДОБАВЬ ЭТИ КЛАССЫ В КОНЕЦ ФАЙЛА api/views.py ---
+
+# --- View для Истории заказов пользователя ---
+class UserOrderListView(generics.ListAPIView):
+    """
+    GET: /api/my-orders/
+    Возвращает список заказов ТЕКУЩЕГО пользователя.
+    """
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated] # Только для залогиненных
+
+    def get_queryset(self):
+        user = self.request.user
+        # Оптимизируем запрос, подтягивая связанные товары
+        return Order.objects.filter(user=user).prefetch_related('items', 'items__product').order_by('-date_ordered')
+
+
+# --- Views для Избранного ---
+class FavoriteListCreateView(generics.ListCreateAPIView):
+    """
+    GET: /api/favorites/ (Список избранного пользователя)
+    POST: /api/favorites/ (Добавить товар в избранное)
+    """
+    serializer_class = FavoriteSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Возвращаем только избранное текущего пользователя
+        return Favorite.objects.filter(user=self.request.user).select_related('product', 'product__category')
+
+    def get_serializer_context(self):
+        """Передаем request в контекст сериализатора (нужно для вложенного ProductSerializer)."""
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
+    
+    
+
+    # perform_create не требует переопределения, т.к. сериализатор сам обработает user и product_id
+
+class FavoriteDestroyByProductView(APIView):
+    """
+    DELETE: /api/favorites/product/{product_id}/
+    Удаляет товар из избранного пользователя по ID товара.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, product_id, format=None):
+        user = request.user
+        # Эффективно удаляем запись или возвращаем 404, если ее нет
+        deleted_count, _ = Favorite.objects.filter(user=user, product_id=product_id).delete()
+
+        if deleted_count == 0:
+             return Response({"detail": "Товар не найден в избранном."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Успешное удаление
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+# --- КОНЕЦ ДОБАВЛЯЕМОГО КОДА ---

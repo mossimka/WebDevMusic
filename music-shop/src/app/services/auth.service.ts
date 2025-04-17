@@ -28,25 +28,27 @@ export class AuthService {
   }
 
   login(authModel: any): Observable<Token> {
-    return this.getHttpClient().post<Token>(this.loginUrl, authModel).pipe(
-      tap((token) => this.storeTokens(token))
-    );
+    return this.getHttpClient()
+      .post<Token>(this.loginUrl, authModel)
+      .pipe(tap((token) => this.storeTokens(token)));
   }
 
   refreshToken(body: any): Observable<any> {
-    return this.getHttpClient().post(this.refreshTokenUrl, body).pipe(
-      tap((token: any) => localStorage.setItem('access', token.access)),
-      catchError((error) => {
-        this.logout();
-        return throwError(() => error);
-      })
-    );
+    return this.getHttpClient()
+      .post(this.refreshTokenUrl, body)
+      .pipe(
+        tap((token: any) => localStorage.setItem('access', token.access)),
+        catchError((error) => {
+          this.logout();
+          return throwError(() => error);
+        })
+      );
   }
 
   storeTokens(token: Token): void {
     localStorage.setItem('access', token.access);
     if (token.refresh) {
-        localStorage.setItem('refresh', token.refresh);
+      localStorage.setItem('refresh', token.refresh);
     }
     this.loggedInSubject.next(true);
   }
@@ -70,29 +72,31 @@ export class AuthService {
         subscriber.complete();
       });
     }
-    return this.getHttpClient().get(this.validateTokenURL).pipe(
-      map(() => true),
-      catchError(() => {
-        return new Observable<boolean>((subscriber) => {
+    return this.getHttpClient()
+      .get(this.validateTokenURL)
+      .pipe(
+        map(() => true),
+        catchError(() => {
+          return new Observable<boolean>((subscriber) => {
             subscriber.next(false);
             subscriber.complete();
-        });
-      })
-    );
+          });
+        })
+      );
   }
 
   validateTokenOnStart() {
-    this.validateToken().subscribe(isValid => {
-        console.log('Initial token validation result:', isValid);
-        if (!isValid && this.checkLoggedIn()) {
-           // If validation fails but checkLoggedIn was true, update state
-           // This might happen if token exists but is invalid/expired
-           // However, the interceptor's refresh logic is usually better suited for this
-           // Consider if this explicit update is needed vs letting 401 handling work.
-           // this.loggedInSubject.next(false);
-        } else if (isValid && !this.checkLoggedIn()) {
-            this.loggedInSubject.next(true);
-        }
+    this.validateToken().subscribe((isValid) => {
+      console.log('Initial token validation result:', isValid);
+      if (!isValid && this.checkLoggedIn()) {
+        // If validation fails but checkLoggedIn was true, update state
+        // This might happen if token exists but is invalid/expired
+        // However, the interceptor's refresh logic is usually better suited for this
+        // Consider if this explicit update is needed vs letting 401 handling work.
+        // this.loggedInSubject.next(false);
+      } else if (isValid && !this.checkLoggedIn()) {
+        this.loggedInSubject.next(true);
+      }
     });
   }
 
@@ -104,7 +108,11 @@ export class AuthService {
     }
     return this.getHttpClient().get<User>(this.meUrl, {
       headers: headers,
-      responseType: 'json'
+      responseType: 'json',
     });
+  }
+
+  public isLoggedIn(): boolean {
+    return this.loggedInSubject.value;
   }
 }

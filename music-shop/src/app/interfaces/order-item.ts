@@ -1,4 +1,5 @@
 export interface OrderItem {
+  product_name: any;
   id: number;
   product: number;
   quantity: number;

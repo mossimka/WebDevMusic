@@ -6,8 +6,8 @@ import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../interfaces/category';
-import {User} from '../../interfaces/user';
-import {AuthService} from '../../services/auth.service';
+import { User } from '../../interfaces/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-content',
@@ -21,9 +21,9 @@ export class ContentComponent {
   productService: ProductService = inject(ProductService);
   categoryService: CategoryService = inject(CategoryService);
   filteredProductsList: Product[] = [];
-  filter: string = "";
+  filter: string = '';
   categories: Category[] = [];
-  selectedCategories: number[] = [];
+  selectedCategories: string[] = [];
   user: User | null = null;
   authService: AuthService = inject(AuthService);
 
@@ -31,7 +31,7 @@ export class ContentComponent {
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe((data) => {
-        this.user = data;
+      this.user = data;
     });
     this.filter = '';
     this.productService.getProducts().subscribe((products: Product[]) => {
@@ -48,33 +48,37 @@ export class ContentComponent {
     this.applyFilters();
   }
 
-  toggleCategory(category: Category) { // Change parameter type to Category
-    const index = this.selectedCategories.indexOf(category.id);
+  toggleCategory(category: Category) {
+    const categoryName = category.name; // Работаем с именем
+    const index = this.selectedCategories.indexOf(categoryName); // Ищем имя
     if (index > -1) {
-      this.selectedCategories.splice(index, 1);
+      this.selectedCategories.splice(index, 1); // Удаляем имя
     } else {
-      this.selectedCategories.push(category.id);
+      this.selectedCategories.push(categoryName); // Добавляем имя
     }
-    console.log('Toggled Category:', category, 'Selected Categories:', this.selectedCategories);
+    console.log(
+      'Toggled Category:',
+      categoryName,
+      'Selected Categories:',
+      this.selectedCategories
+    );
     this.applyFilters();
   }
 
   private applyFilters() {
     let filtered = [...this.productsList];
-
     if (this.filter) {
-      filtered = filtered.filter(product =>
+      filtered = filtered.filter((product) =>
         product?.name?.toLowerCase().includes(this.filter.toLowerCase())
       );
     }
 
     if (this.selectedCategories.length > 0) {
-      filtered = filtered.filter(product => {
-        const productCategoryId = product.category; // Get the category ID
-        const isSelected = this.selectedCategories.includes(productCategoryId); // Compare IDs
-
-        console.log(`Filtering: Product Category ID: ${productCategoryId}, Selected Category IDs:`, this.selectedCategories, `Match:`, isSelected);
-
+      filtered = filtered.filter((product) => {
+        // product.category теперь строка (имя)
+        // this.selectedCategories теперь массив строк (имен)
+        const isSelected = this.selectedCategories.includes(product.category); // Сравниваем строки
+        // console.log(`Filtering: Product Category Name: ${product.category}, Selected Names:`, this.selectedCategories, `Match:`, isSelected);
         return isSelected;
       });
     }
@@ -82,7 +86,8 @@ export class ContentComponent {
   }
 
   onProductRemoved(productId: Number) {
-    this.productsList = this.productsList.filter(p => p.id !== productId);
-    this.filteredProductsList = this.filteredProductsList.filter(p => p.id !== productId);
+    this.productsList = this.productsList.filter((p) => p.id !== productId);
+    // Применяем фильтры заново, чтобы обновить filteredProductsList
+    this.applyFilters();
   }
 }

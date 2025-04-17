@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Order } from '../interfaces/order';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService {
   private baseUrl = 'http://localhost:8000/api/orders/';
@@ -23,7 +23,14 @@ export class OrderService {
     return this.http.post<Order>(this.baseUrl, orderData || {});
   }
 
-   deleteOrder(id: number): Observable<void> {
-     return this.http.delete<void>(`${this.baseUrl}${id}/`);
-   }
+  deleteOrder(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}${id}/`);
+  }
+
+  getMyOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.baseUrl}/my-orders/`);
+  }
+  getOrderDetails(orderId: number): Observable<Order> {
+    return this.http.get<Order>(`${this.baseUrl}/orders/${orderId}/`);
+  }
 }

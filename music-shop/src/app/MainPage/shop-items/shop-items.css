@@ -1,29 +1,30 @@
-.listing{
-    width: 23vw;
-    height: 63vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: #fff;
-    margin: 5vh 0;
+.listing {
+  width: 23vw;
+  height: 63vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #fff;
+  margin: 5vh 0;
+  position: relative;
 }
-.listing-info{
-    background-color: #e1c69b;
-    width: 100%;
-    height: 25vh;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+.listing-info {
+  background-color: #e1c69b;
+  width: 100%;
+  height: 25vh;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
-.listing-photo-frame{
-    height: 38vh;
-    width: 21vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.listing-photo-frame {
+  height: 38vh;
+  width: 21vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .listing-photo-div {
   margin-top: 5px;
@@ -41,32 +42,32 @@
   object-position: center;
   display: block; /* Good practice */
 }
-.listing-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+.listing-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
-.listing-heading{
-    max-width: 18vw;
+.listing-heading {
+  max-width: 18vw;
 }
-.primary{
-    width: 10vw;
+.primary {
+  width: 10vw;
 }
 
-.likes:hover{
-    cursor: pointer;
-    color: black;
+.likes:hover {
+  cursor: pointer;
+  color: black;
 }
-.likes img{
-    width: 3vh;
+.likes img {
+  width: 3vh;
 }
-.remove{
-    font-size: 30px;
+.remove {
+  font-size: 30px;
 }
-.remove:hover{
-    color: black;
-    cursor: pointer;
+.remove:hover {
+  color: black;
+  cursor: pointer;
 }
 
 .actions {
@@ -91,7 +92,70 @@
   margin-right: 5px;
 }
 
-.listing-react{
+.listing-react {
   display: flex;
   align-items: center;
+}
+/* --- НАЧАЛО МИНИМАЛЬНОЙ МОДИФИКАЦИИ --- */
+/* Стили для кнопки Избранное */
+.favorite-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* color свойство здесь больше не управляет иконкой */
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Убрали all, чтобы не мешать fill */
+  z-index: 5;
+}
+
+/* Стиль для SVG по умолчанию */
+.favorite-button svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: #bbb; /* Неактивный цвет FILL */
+  transition: fill 0.2s ease; /* Плавный переход для fill */
+}
+
+/* Стиль для SVG при наведении на кнопку */
+.favorite-button:hover:not(:disabled) svg {
+  fill: #f57; /* Цвет FILL при наведении */
+}
+/* Можно оставить эффекты для самой кнопки */
+.favorite-button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+/* Стиль для SVG, когда кнопка активна (.is-favorite) */
+.favorite-button.is-favorite svg {
+  fill: #e53935; /* Ярко-красный активный цвет FILL */
+}
+
+/* Стиль для SVG при наведении на активную кнопку */
+.favorite-button.is-favorite:hover:not(:disabled) svg {
+  fill: #c62828; /* Темнее красный FILL при наведении */
+}
+
+/* --- Стили для состояния обработки/отключения --- */
+.favorite-button.processing,
+.favorite-button:disabled {
+  cursor: default;
+  opacity: 0.6;
+  transform: none; /* Убираем увеличение */
+}
+
+/* Убираем изменение цвета иконки при наведении на отключенную кнопку */
+.favorite-button.processing:hover svg,
+.favorite-button:disabled:hover svg {
+  fill: #bbb; /* Возвращаем неактивный FILL */
 }

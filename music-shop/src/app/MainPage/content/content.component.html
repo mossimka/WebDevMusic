@@ -1,15 +1,23 @@
 <section class="search">
   <form>
-    <input class="input-place" type="text" placeholder="Filter by name" #filter>
-    <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+    <input
+      class="input-place"
+      type="text"
+      placeholder="Filter by name"
+      #filter
+    />
+    <button class="primary" type="button" (click)="filterResults(filter.value)">
+      Search
+    </button>
   </form>
 </section>
 <section class="categories">
   <div *ngFor="let category of categories">
     <button
       class="category-button"
-      [class.selected]="selectedCategories.includes(category.id)"
-      (click)="toggleCategory(category)">
+      [class.selected]="selectedCategories.includes(category.name)"
+      (click)="toggleCategory(category)"
+    >
       {{ category.name }}
     </button>
   </div>
@@ -18,7 +26,11 @@
 <div class="div-results">
   <section class="results">
     <div *ngFor="let product of filteredProductsList">
-      <app-shop-items class="shop-items" [product]="product" (productRemoved)="onProductRemoved($event)"></app-shop-items>
+      <app-shop-items
+        class="shop-items"
+        [product]="product"
+        (productRemoved)="onProductRemoved($event)"
+      ></app-shop-items>
     </div>
   </section>
 </div>
