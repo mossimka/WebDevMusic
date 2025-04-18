@@ -27,7 +27,7 @@ h4 {
 }
 
 .categories{
-  background-color: #3c5654;
+  background-color: var(--primary-dark);
   width: 98.9vw;
   display: flex;
   height: 5vh;

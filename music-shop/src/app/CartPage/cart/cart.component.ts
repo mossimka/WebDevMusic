@@ -5,6 +5,8 @@ import { CartItem } from '../../interfaces/cart-item'
 import { CartService } from '../../services/cart.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {RouterLink} from '@angular/router';
+import {RoutingButtonComponent} from '../../Buttons/routing-button/routing-button.component';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +14,9 @@ import { takeUntil } from 'rxjs/operators';
   imports: [
     CommonModule,
     NgForOf,
-    CartItemComponent
+    CartItemComponent,
+    RouterLink,
+    RoutingButtonComponent
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'

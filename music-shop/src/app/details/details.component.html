@@ -1,5 +1,5 @@
 <div class="details">
-  <button class="primary" [routerLink]="['/']">←Return</button>
+  <app-routing-button [routePath]="['/']" class="routing-button">←Return</app-routing-button>
   <section class="photos">
     <div class="details-photo">
       <img [src]="product?.photo">
@@ -10,7 +10,7 @@
     </div>
   </section>
   <section class="details-info">
-    <h1 class="details-name">{{product?.name}} - {{product?.price}}₸ - ☆ {{product?.rating}}</h1>
+    <h1 class="details-name">{{product?.name}} - {{product?.price}}₸</h1>
     <h2 class="details-description-heading">Description</h2>
     <p class="description-p">{{product?.description}}</p>
     <div class="details-small">

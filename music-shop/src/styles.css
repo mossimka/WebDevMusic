@@ -1,16 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --primary: #7a9794;
+  --primary-dark: #3c5654;
+  --light: #e4ecec;
+}
+
 *{
     margin: 0;
     padding: 0;
-    color: #3c5654;
+    color: var(--primary-dark);
     font-family: 'JetBrains Mono', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
-    scrollbar-color: #3c5654 #e4ecec;
+    scrollbar-color: var(--primary-dark) var(--light);
     scrollbar-width: 1vw;
 }
 
 
 .input-place{
-    color: #3c5654;
+    color: var(--primary-dark);
     border: none;
     height: 5vh;
     border: 1px solid white;
@@ -18,25 +23,25 @@
     border-radius: 5px;
 }
 .input-place:focus{
-    border: 1px solid #3c5654;
+    border: 1px solid var(--primary-dark);
 }
 button.primary {
     padding: 10px;
-    border: solid 1px var(--primary-color);
-    background: #3c5654;
+    border: solid 1px var(--primary);
+    background: var(--primary-dark);
     color: white;
     border-radius: 8px;
 }
 button.primary:hover {
     padding: 10px;
-    border: solid 1px var(--primary-color);
-    background: #3c5654;
-    color: #e4ecec;
+    border: solid 1px var(--primary);
+    background: var(--primary-dark);
+    color: var(--light);
     border-radius: 8px;
     cursor: pointer;
 }
 button.primary:active{
-    color: #7a9794;
+    color: var(--primary);
 }
 
 input{

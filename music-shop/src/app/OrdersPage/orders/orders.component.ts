@@ -5,8 +5,8 @@ import {
   DatePipe,
   DecimalPipe,
 } from '@angular/common';
-import { OrderService } from '../services/order.service';
-import { Order } from '../interfaces/order';
+import { OrderService } from '../../services/order.service';
+import { Order } from '../../interfaces/order';
 import { Observable, catchError, of, tap } from 'rxjs';
 import { RouterLink } from '@angular/router';
 

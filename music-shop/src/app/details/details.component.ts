@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../interfaces/product';
 import { RouterModule } from '@angular/router';
+import {RoutingButtonComponent} from '../Buttons/routing-button/routing-button.component';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RoutingButtonComponent],
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })

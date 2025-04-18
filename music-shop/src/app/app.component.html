@@ -7,8 +7,8 @@
     </section>
     <div class="logged" *ngIf="logged_in">
       <div class="logged-buttons">
-        <button class="primary" [routerLink]="['/cart']">Cart</button>
-        <button class="primary" [routerLink]="['/favorite']">Favorite</button>
+        <app-routing-button [routePath]="['/cart']">Cart</app-routing-button>
+        <app-routing-button [routePath]="['/favorite']">Favorite</app-routing-button>
       </div>
       <div id="user">
         <img class="user-img" src="assets/user.png" (click)="popUp()">

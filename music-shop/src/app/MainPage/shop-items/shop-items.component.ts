@@ -7,13 +7,14 @@ import { Product } from '../../interfaces/product';
 import { CartButtonComponent } from '../../Buttons/cart-button/cart-button.component';
 import { FavoriteService } from '../../services/favorite.service';
 import { AuthService } from '../../services/auth.service';
+import {RoutingButtonComponent} from '../../Buttons/routing-button/routing-button.component';
 
 @Component({
   selector: 'app-shop-items',
   standalone: true,
-  imports: [CommonModule, RouterModule, CartButtonComponent],
+  imports: [CommonModule, RouterModule, CartButtonComponent, RoutingButtonComponent],
   templateUrl: 'shop-items.component.html',
-  styleUrl: `./shop-items.css`,
+  styleUrl: `./shop-items.component.css`,
 })
 export class ShopItemsComponent {
   @Input() product!: Product;

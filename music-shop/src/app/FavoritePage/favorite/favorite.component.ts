@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 // import { ShopItemsComponent } from '../../MainPage/shop-items/shop-items.component';
 import { RouterLink } from '@angular/router';
 import { FavoritesItemComponent} from '../favorites-item/favorites-item.component';
+import {RoutingButtonComponent} from '../../Buttons/routing-button/routing-button.component';
 
 @Component({
   selector: 'app-favorite',
@@ -15,7 +16,9 @@ import { FavoritesItemComponent} from '../favorites-item/favorites-item.componen
     CommonModule,
     // ShopItemsComponent, // Remove if only FavoriteItemComponent is used
     RouterLink,
-    FavoritesItemComponent // <<< Add the new component here
+    FavoritesItemComponent,
+    RoutingButtonComponent,
+    // <<< Add the new component here
   ],
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.css'],
@@ -31,7 +34,6 @@ export class FavoriteComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadFavorites();
-    // Subscribe to updates (e.g., if an item is added/removed elsewhere)
     this.updateSub = this.favoriteService.favoritesUpdated$.subscribe(() => {
       console.log('Favorites updated event received, reloading...');
       this.loadFavorites();
@@ -47,7 +49,7 @@ export class FavoriteComponent implements OnInit, OnDestroy {
     console.log('loadFavorites starting');
     this.loading = true;
     this.error = null;
-    this.dataSub?.unsubscribe(); // Unsubscribe from previous data fetch
+    this.dataSub?.unsubscribe();
 
     this.dataSub = this.favoriteService.getFavorites().subscribe({
       next: (data) => {

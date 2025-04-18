@@ -1,4 +1,9 @@
-/* Стили для истории заказов */
+:host{
+  display: block;
+  min-height: 52.5vh;
+}
+
+
 .loading-indicator,
 .error-message,
 .no-orders {
@@ -115,20 +120,4 @@
   flex-basis: 20%;
   text-align: right;
   margin-bottom: 5px;
-}
-@media (max-width: 600px) {
-  .order-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .item-name,
-  .item-details,
-  .item-total {
-    flex-basis: 100%;
-    text-align: left;
-    margin-right: 0;
-  }
-  .item-total {
-    margin-top: 5px;
-  }
 }

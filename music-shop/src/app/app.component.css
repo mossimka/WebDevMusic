@@ -82,7 +82,7 @@ main{
   height: 14vh;
   width: 14vw;
   border-radius: 10px;
-  border: 1px solid #7a9794;
+  border: 1px solid var(--primary);
   z-index: 100000;
 }
 .pop-up button{
@@ -91,7 +91,7 @@ main{
 }
 
 footer{
-  background-color: #3c5654;
+  background-color: var(--primary-dark);
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;

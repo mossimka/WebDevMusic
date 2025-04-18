@@ -3,7 +3,15 @@
   min-height: 52.5vh;
 }
 
-  .loading-indicator,
+.routing-button{
+  position: fixed;
+  left: 4vw;
+  top: 22vh;
+  z-index: 2000;
+}
+
+
+.loading-indicator,
 .error-message,
 .no-favorites {
   text-align: center;

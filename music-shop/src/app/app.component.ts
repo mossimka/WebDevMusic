@@ -5,11 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 import {User} from './interfaces/user';
+import {RoutingButtonComponent} from './Buttons/routing-button/routing-button.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, RouterModule, HttpClientModule, RoutingButtonComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

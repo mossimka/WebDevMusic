@@ -25,7 +25,6 @@ class Product(models.Model):
     available_units = models.PositiveIntegerField(default=0)
     country = models.CharField(max_length=100, blank=True)
     link = models.URLField(blank=True)
-    likes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.name} - {self.price}"

@@ -4,9 +4,9 @@
     flex-direction: column;
     align-items: center;
 }
-.primary{
+.routing-button{
     position: fixed;
-    left: 13vw;
+    left: 12vw;
     top: 22vh;
 }
 
@@ -42,7 +42,7 @@
 .details-info{
     display: flex;
     flex-direction: column;
-    border: 1px #3c5654 solid;
+    border: 1px var(--primary-dark) solid;
     padding: 5vw;
     margin-bottom: 10vh;
     height: 40vh;

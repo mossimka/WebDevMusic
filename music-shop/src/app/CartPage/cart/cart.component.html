@@ -1,4 +1,5 @@
 <h2>Your Shopping Cart</h2>
+<app-routing-button [routePath]="['/']" class="return_button">←Return</app-routing-button>
 
 <section class="cart-items" *ngIf="cartItemList.length > 0; else emptyCart">
   <div *ngFor="let item of cartItemList" class="cart-item-container">
@@ -12,7 +13,7 @@
   <section class="cart-summary">
     <h3>Summary</h3>
     <p>Total Items: {{ cartItemList.length }}</p>
-    <button>Proceed to Checkout</button>
+    <button class="">Proceed to Checkout</button>
   </section>
 
 </section>

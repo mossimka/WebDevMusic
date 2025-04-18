@@ -1,10 +1,10 @@
-<h2>Моя история заказов</h2>
+<h2>My orders' history</h2>
 
-<div *ngIf="loading" class="loading-indicator">Загрузка...</div>
+<div *ngIf="loading" class="loading-indicator">Download...</div>
 
 <div *ngIf="error && !loading" class="error-message">
-  <p><strong>Ошибка:</strong> {{ error }}</p>
-  <button (click)="retryLoad()" class="btn-retry">Попробовать снова</button>
+  <p><strong>Error:</strong> {{ error }}</p>
+  <button (click)="retryLoad()" class="btn-retry">Try again</button>
 </div>
 
 <ng-container *ngIf="!loading && !error">

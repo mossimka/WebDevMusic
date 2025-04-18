@@ -5,8 +5,8 @@
   justify-content: space-around;
   width: 50vw;
   height: 70vh;
-  background-color: #7a9794;
-  border: 1px solid #3c5654;
+  background-color: var(--primary);
+  border: 1px solid var(--primary-dark);
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-top:5vh;

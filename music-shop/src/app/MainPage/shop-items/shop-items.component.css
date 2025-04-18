@@ -87,7 +87,7 @@
 }
 
 .likes img {
-  width: 20px; /* Adjust size */
+  width: 20px;
   height: 20px;
   margin-right: 5px;
 }
@@ -96,8 +96,7 @@
   display: flex;
   align-items: center;
 }
-/* --- НАЧАЛО МИНИМАЛЬНОЙ МОДИФИКАЦИИ --- */
-/* Стили для кнопки Избранное */
+
 .favorite-button {
   position: absolute;
   top: 8px;
@@ -112,50 +111,45 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  /* color свойство здесь больше не управляет иконкой */
-  transition: background-color 0.2s ease, transform 0.2s ease; /* Убрали all, чтобы не мешать fill */
+  transition: background-color 0.2s ease, transform 0.2s ease;
   z-index: 5;
 }
 
-/* Стиль для SVG по умолчанию */
+
 .favorite-button svg {
   width: 16px;
   height: 16px;
   display: block;
-  fill: #bbb; /* Неактивный цвет FILL */
-  transition: fill 0.2s ease; /* Плавный переход для fill */
+  fill: #bbb;
+  transition: fill 0.2s ease;
 }
 
-/* Стиль для SVG при наведении на кнопку */
+
 .favorite-button:hover:not(:disabled) svg {
-  fill: #f57; /* Цвет FILL при наведении */
+  fill: #f57;
 }
-/* Можно оставить эффекты для самой кнопки */
+
 .favorite-button:hover:not(:disabled) {
   background-color: rgba(255, 255, 255, 0.9);
   transform: scale(1.1);
 }
 
-/* Стиль для SVG, когда кнопка активна (.is-favorite) */
 .favorite-button.is-favorite svg {
-  fill: #e53935; /* Ярко-красный активный цвет FILL */
+  fill: #e53935;
 }
 
-/* Стиль для SVG при наведении на активную кнопку */
 .favorite-button.is-favorite:hover:not(:disabled) svg {
-  fill: #c62828; /* Темнее красный FILL при наведении */
+  fill: #c62828;
 }
 
-/* --- Стили для состояния обработки/отключения --- */
 .favorite-button.processing,
 .favorite-button:disabled {
   cursor: default;
   opacity: 0.6;
-  transform: none; /* Убираем увеличение */
+  transform: none;
 }
 
-/* Убираем изменение цвета иконки при наведении на отключенную кнопку */
 .favorite-button.processing:hover svg,
 .favorite-button:disabled:hover svg {
-  fill: #bbb; /* Возвращаем неактивный FILL */
+  fill: #bbb;
 }

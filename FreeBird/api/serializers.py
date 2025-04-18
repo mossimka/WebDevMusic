@@ -16,7 +16,7 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ('id', 'name', 'price', 'photo', 'photo_url', 'sub_photos',
                   'category', 'description', 'available_units',
-                  'country', 'link', 'likes', 'is_favorite')
+                  'country', 'link', 'is_favorite')
         read_only_fields = ['photo_url', 'is_favorite']
 
     def get_photo_url(self, obj):
@@ -26,25 +26,18 @@ class ProductSerializer(serializers.ModelSerializer):
         else:
             return None
 
-     # Новый метод для определения, в избранном ли товар
     def get_is_favorite(self, obj):
         user = self.context.get('request', None).user if self.context.get('request') else None # Safely get user
         if user and user.is_authenticated:
-            # Check if a Favorite entry exists for this user and product
             return Favorite.objects.filter(user=user, product=obj).exists()
-        return False # For anonymous users, always false
+        return False
 
-# --- НОВЫЙ СЕРИАЛИЗАТОР для Избранного ---
 class FavoriteSerializer(serializers.ModelSerializer):
-    # Для чтения используем вложенный ProductSerializer
-    # Важно! Передаем контекст, чтобы is_favorite внутри ProductSerializer работал
     product = serializers.SerializerMethodField()
 
-    # Поле для получения ID продукта при создании (POST)
     product_id = serializers.PrimaryKeyRelatedField(
         queryset=Product.objects.all(), source='product', write_only=True
     )
-    # Автоматически подставляем пользователя из запроса
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
@@ -53,14 +46,12 @@ class FavoriteSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'user', 'product', 'added_on']
 
     def get_product(self, obj):
-        # При чтении (GET) передаем контекст в ProductSerializer
         serializer = ProductSerializer(obj.product, context=self.context)
         return serializer.data
 
     def validate(self, attrs):
-        # Проверка на дубликаты перед созданием
         user = self.context['request'].user
-        product = attrs['product'] # source='product' для product_id
+        product = attrs['product']
         if Favorite.objects.filter(user=user, product=product).exists():
              raise serializers.ValidationError({"product_id": "Этот товар уже в избранном."})
         return attrs

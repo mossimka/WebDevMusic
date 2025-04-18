@@ -26,12 +26,11 @@
   </div>
   <div class="listing-info">
     <h2 class="listing-heading">{{ product.name }}</h2>
-    <h3>☆ {{ product.rating }}</h3>
     <p class="lisitng-price">{{ product.price }} ₸</p>
     <div class="listing-react">
-      <button class="primary" [routerLink]="['/details', product.id]">
+      <app-routing-button [routePath]="['/details', product.id]">
         View Details
-      </button>
+      </app-routing-button>
       <app-cart-button [productId]="product.id"></app-cart-button>
     </div>
   </div>
