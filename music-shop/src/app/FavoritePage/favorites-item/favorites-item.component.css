@@ -25,10 +25,10 @@
 .product-image {
   width: 80px;
   height: 80px;
-  object-fit: contain; /* Use contain to avoid distortion */
+  object-fit: contain;
   margin-right: 15px;
   border-radius: 4px;
-  background-color: #f8f8f8; /* Light background for images */
+  background-color: #f8f8f8;
 }
 
 .product-details {

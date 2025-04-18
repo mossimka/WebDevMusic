@@ -7,6 +7,7 @@
     <div class="product-details">
       <h4 class="product-name">{{ favoriteItem.product.name }}</h4>
       <p class="product-price">{{ favoriteItem.product.price | currency:'₸ ' }}</p>
+      <app-cart-button [productId]="favoriteItem.product.id"></app-cart-button>
     </div>
   </a>
 

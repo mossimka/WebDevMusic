@@ -44,17 +44,17 @@ export class ContentComponent {
   }
 
   filterResults(text: string) {
-    this.filter = text; // Update the filter property
+    this.filter = text;
     this.applyFilters();
   }
 
   toggleCategory(category: Category) {
-    const categoryName = category.name; // Работаем с именем
-    const index = this.selectedCategories.indexOf(categoryName); // Ищем имя
+    const categoryName = category.name;
+    const index = this.selectedCategories.indexOf(categoryName);
     if (index > -1) {
-      this.selectedCategories.splice(index, 1); // Удаляем имя
+      this.selectedCategories.splice(index, 1);
     } else {
-      this.selectedCategories.push(categoryName); // Добавляем имя
+      this.selectedCategories.push(categoryName);
     }
     console.log(
       'Toggled Category:',
@@ -75,10 +75,8 @@ export class ContentComponent {
 
     if (this.selectedCategories.length > 0) {
       filtered = filtered.filter((product) => {
-        // product.category теперь строка (имя)
-        // this.selectedCategories теперь массив строк (имен)
-        const isSelected = this.selectedCategories.includes(product.category); // Сравниваем строки
-        // console.log(`Filtering: Product Category Name: ${product.category}, Selected Names:`, this.selectedCategories, `Match:`, isSelected);
+        const isSelected = this.selectedCategories.includes(product.category);
+
         return isSelected;
       });
     }
@@ -87,7 +85,6 @@ export class ContentComponent {
 
   onProductRemoved(productId: Number) {
     this.productsList = this.productsList.filter((p) => p.id !== productId);
-    // Применяем фильтры заново, чтобы обновить filteredProductsList
     this.applyFilters();
   }
 }

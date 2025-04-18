@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { Favorite } from '../../interfaces/favorite';
+import {CartButtonComponent} from '../../Buttons/cart-button/cart-button.component';
 
 
 @Component({
   selector: 'app-favorites-item',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, CartButtonComponent],
   templateUrl: './favorites-item.component.html',
   styleUrls: ['./favorites-item.component.css']
 })
