@@ -3,7 +3,7 @@
     margin-left: 2vh;
 }
 header{
-    background-color: #e1c69b;
+    background-color: var(--sandy);
     display: flex;
     justify-content: space-between;
     align-items: center;

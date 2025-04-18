@@ -34,18 +34,20 @@ h4 {
   align-items: center;
 }
 .category-button{
+  cursor: pointer;
   background-color: #fff;
   height: 4vh;
   width: 7vw;
   border-radius: 5px;
   margin: 0 0.3vw;
+  transition: background-color 0.2s ease-in-out;
 }
 .category-button:hover{
   background-color: #dfd9d0;
   font-weight: 550;
 }
 .category-button.selected{
-  background-color: #e1c69b;
+  background-color: var(--sandy);
   font-weight: 550;
 }
 .category-button.selected:hover{
