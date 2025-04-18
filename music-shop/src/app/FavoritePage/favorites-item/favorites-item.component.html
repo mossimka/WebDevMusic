@@ -1,0 +1,15 @@
+<div class="favorite-item-card" *ngIf="favoriteItem">
+  <a [routerLink]="['/details', favoriteItem.product.id]" class="product-link">
+    <img
+      [src]="getProductImage()"
+      [alt]="favoriteItem.product.name"
+      class="product-image">
+    <div class="product-details">
+      <h4 class="product-name">{{ favoriteItem.product.name }}</h4>
+      <p class="product-price">{{ favoriteItem.product.price | currency:'₸ ' }}</p>
+    </div>
+  </a>
+
+  <button (click)="onRemoveClick()" class="btn-remove" title="Remove from Favorites">
+    &times; </button>
+</div>

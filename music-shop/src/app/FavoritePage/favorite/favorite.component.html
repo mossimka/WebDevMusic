@@ -10,10 +10,11 @@
 <ng-container *ngIf="!loading && !error">
   <div *ngIf="favorites.length > 0; else noFavoritesTemplate">
     <div class="favorites-grid">
-      <app-shop-items
+      <app-favorites-item
         *ngFor="let fav of favorites"
-        [product]="fav.product"
-      ></app-shop-items>
+        [favoriteItem]="fav"
+        (removeFavorite)="handleRemoveFavorite($event)">
+      </app-favorites-item>
     </div>
   </div>
 </ng-container>
