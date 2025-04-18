@@ -83,6 +83,7 @@ main{
   width: 14vw;
   border-radius: 10px;
   border: 1px solid #7a9794;
+  z-index: 100000;
 }
 .pop-up button{
   width: 8vw;

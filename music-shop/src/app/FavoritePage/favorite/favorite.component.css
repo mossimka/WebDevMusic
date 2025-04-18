@@ -1,4 +1,9 @@
-.loading-indicator,
+:host {
+  display: block;
+  min-height: 52.5vh;
+}
+
+  .loading-indicator,
 .error-message,
 .no-favorites {
   text-align: center;

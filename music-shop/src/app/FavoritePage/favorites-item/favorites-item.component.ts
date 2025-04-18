@@ -25,9 +25,9 @@ export class FavoritesItemComponent {
 
   onRemoveClick(): void {
     // Check if favoriteItem and its id exist before emitting
-    if (this.favoriteItem?.id) {
+    if (this.favoriteItem?.product?.id) {
       // Emit the favorite ID when the remove button is clicked
-      this.removeFavorite.emit(this.favoriteItem.id);
+      this.removeFavorite.emit(this.favoriteItem.product.id);
     } else {
       console.error("Favorite item or ID is missing, cannot remove.");
     }
