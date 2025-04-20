@@ -2,11 +2,22 @@
 ![logo](https://github.com/user-attachments/assets/9b62a718-bd95-426d-ab38-84384c86e851)
 
 ## Description
-Team of Timur, Gleb, and Maxim. This project focuses on implementation of Angular and Django that we learned from WebDev course. This project provides front end and back end side of web application usimng different technologies.
+Team of Timur, Gleb, and Maxim. WebDevMusic is a web application demonstrating a full-stack implementation using Angular for the frontend and Django for the backend. It allows users to like products to their favorites, add them  to cart and make orders. This project serves as our final submission for the WebDev course, showcasing our ability to integrate frontend and backend technologies.
 
 ## Table of Contents
+- [Tech Stack](#tech_stack)
 - [Installation](#installation)
+- [Screenshots](#screenshots)
 - [Authors](#authors)
+
+## Tech Stack
+
+* **Frontend:** Angular, TypeScript, HTML, CSS
+* **Backend:** Django, Python
+* **Database:** SQLite
+* **API:** Django REST Framework (*if used*)
+* **Environment Management:** Python `venv`
+* **Package Managers:** `pip`, `npm`
 
 ## Installation
 To get a local copy up and running, follow these simple steps:
@@ -34,6 +45,16 @@ To get a local copy up and running, follow these simple steps:
    cd music-shop
    ng serve
    ```
+## Screenshots
+
+![Screenshot of Mainpage](path/to/homepage_screenshot.png)
+Main page
+
+![Screenshot of Cart Page](path/to/browser_screenshot.png)
+Cart page
+
+![Screenshot ofFavorites page](path/to/browser_screenshot.png)
+Favorites Page
 
 ## Authors
 
@@ -41,4 +62,4 @@ This project is developed and maintained by:
 
 - Timur Manarbaev @fendcg
 - Gleb Yurtaev @Gleb-Y
-- Maxim Sarsekeyv @mossimka
+- Maxim Sarsekeyev @mossimka
