@@ -47,13 +47,13 @@ To get a local copy up and running, follow these simple steps:
    ```
 ## Screenshots
 
-![Screenshot of Mainpage](path/to/homepage_screenshot.png)
+![Screenshot of Mainpage](docs/images/main-page.png)
 Main page
 
-![Screenshot of Cart Page](path/to/browser_screenshot.png)
+![Screenshot of Cart Page](docs/images/cart-page.png)
 Cart page
 
-![Screenshot ofFavorites page](path/to/browser_screenshot.png)
+![Screenshot ofFavorites page](docs/images/favorites.png)
 Favorites Page
 
 ## Authors
