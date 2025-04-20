@@ -47,14 +47,17 @@ To get a local copy up and running, follow these simple steps:
    ```
 ## Screenshots
 
+*Main page*
 ![Screenshot of Mainpage](docs/images/main-page.png)
-Main page
 
+
+*Cart page*
 ![Screenshot of Cart Page](docs/images/cart-page.png)
-Cart page
 
+
+*Favorites Page*
 ![Screenshot ofFavorites page](docs/images/favorites.png)
-Favorites Page
+
 
 ## Authors
 
