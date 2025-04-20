@@ -15,7 +15,6 @@ import {RoutingButtonComponent} from '../../Buttons/routing-button/routing-butto
     CommonModule,
     NgForOf,
     CartItemComponent,
-    RouterLink,
     RoutingButtonComponent
   ],
   templateUrl: './cart.component.html',
