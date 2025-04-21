@@ -28,7 +28,7 @@ from .views import (
     FavoriteListCreateView,
     FavoriteDestroyByProductView,
 )
-
+from . import views
 urlpatterns = [
     # --- Authentication ---
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'), # Используем свое имя 'login'
@@ -66,4 +66,8 @@ urlpatterns = [
     # --- Favorites
     path('favorites/', FavoriteListCreateView.as_view(), name='favorite-list-create'),
     path('favorites/product/<int:product_id>/', FavoriteDestroyByProductView.as_view(), name='favorite-destroy-by-product'),
+
+    # --- FBV based API 
+    path('status/', views.api_status, name='api-status'),
+    path('cart/count/', views.cart_item_count, name='cart-item-count'),
 ]
