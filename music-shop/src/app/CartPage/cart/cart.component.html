@@ -12,14 +12,14 @@
 
   <div class="cart-footer">
     <div class="total-price">
-      Итого: {{ calculateTotalPrice() | currency:'KZT':'symbol':'1.2-2' }}
+      Total: {{ calculateTotalPrice() | currency:'KZT':'symbol':'1.2-2' }}
     </div>
-    <button 
-      (click)="createOrder()" 
+    <button
+      (click)="createOrder()"
       class="checkout-btn"
       [disabled]="!cartItemList.length"
     >
-      Оформить заказ
+      Create order
     </button>
   </div>
 </section>

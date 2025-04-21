@@ -1,13 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
-import {
-  CommonModule,
-  CurrencyPipe,
-  DatePipe,
-  DecimalPipe,
-} from '@angular/common';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { OrderService } from '../../services/order.service';
 import { Order } from '../../interfaces/order';
-import { Observable, catchError, of, tap } from 'rxjs';
+
+import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -15,34 +11,46 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, CurrencyPipe, DatePipe, RouterLink],
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css'], // Убедись, что этот CSS есть или удали строку
+  styleUrls: ['./orders.component.css'],
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
   private orderService = inject(OrderService);
-  orders$: Observable<Order[]> = of([]);
+
+  orders: Order[] = [];
   loading = true;
   error: string | null = null;
+
+  private ordersSub?: Subscription;
 
   ngOnInit(): void {
     this.loadOrders();
   }
 
+  ngOnDestroy(): void {
+    this.ordersSub?.unsubscribe();
+  }
+
   loadOrders(): void {
     this.loading = true;
     this.error = null;
-    this.orders$ = this.orderService.getMyOrders().pipe(
-      tap({
-        // Используем tap для побочных эффектов
-        // next: () => console.log('Orders loaded'), // Можно убрать в продакшене
-        error: () => (this.loading = false), // Выключаем загрузку при ошибке
-        complete: () => (this.loading = false), // Выключаем загрузку при успехе
-      }),
-      catchError((err) => {
-        console.error('Error loading orders:', err);
+    this.orders = [];
+
+    this.ordersSub?.unsubscribe();
+
+    this.ordersSub = this.orderService.getMyOrders().subscribe({
+      next: (loadedOrders) => {
+        this.orders = loadedOrders;
+        this.loading = false;
+        this.error = null;
+        console.log('Orders loaded (manual sub):', this.orders);
+      },
+      error: (err) => {
+        console.error('Error loading orders (manual sub):', err);
         this.error = err.message || 'Не удалось загрузить историю заказов.';
-        return of([]); // Возвращаем пустой массив в случае ошибки
-      })
-    );
+        this.loading = false;
+        this.orders = [];
+      },
+    });
   }
 
   retryLoad(): void {

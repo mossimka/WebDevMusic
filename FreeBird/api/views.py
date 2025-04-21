@@ -196,7 +196,7 @@ class CartDetailView(generics.RetrieveDestroyAPIView):
         instance = self.get_object()
         self.perform_destroy(instance)
         serializer = self.get_serializer(instance)
-        return Response(serializer.data, status=status.HTTP_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class CartItemListCreateView(generics.ListCreateAPIView):
@@ -281,7 +281,6 @@ class CartItemDetailView(generics.RetrieveUpdateDestroyAPIView):
         print(f"DEBUG: Final available_stock = {available_stock}, type = {type(available_stock)}")  # DEBUG
         print(f"DEBUG: new_quantity = {new_quantity}, type = {type(new_quantity)}")  # DEBUG
 
-        # Comparison line:
         if available_stock < new_quantity:
             original_stock_display = instance.product.available_units if instance.product.available_units is not None else 0
             raise ValidationError(
@@ -291,62 +290,48 @@ class CartItemDetailView(generics.RetrieveUpdateDestroyAPIView):
 
         serializer.save()
 
-# --- ДОБАВЬ ЭТИ КЛАССЫ В КОНЕЦ ФАЙЛА api/views.py ---
 
-# --- View для Истории заказов пользователя ---
+
 class UserOrderListView(generics.ListAPIView):
     """
     GET: /api/my-orders/
-    Возвращает список заказов ТЕКУЩЕГО пользователя.
     """
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated] # Только для залогиненных
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
-        # Оптимизируем запрос, подтягивая связанные товары
-        return Order.objects.filter(user=user).prefetch_related('items', 'items__product').order_by('-date_ordered')
+        return Order.objects.filter(user=user).prefetch_related('items', 'items__product')
 
 
-# --- Views для Избранного ---
 class FavoriteListCreateView(generics.ListCreateAPIView):
     """
-    GET: /api/favorites/ (Список избранного пользователя)
-    POST: /api/favorites/ (Добавить товар в избранное)
+    GET: /api/favorites/
+    POST: /api/favorites/
     """
     serializer_class = FavoriteSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Возвращаем только избранное текущего пользователя
         return Favorite.objects.filter(user=self.request.user).select_related('product', 'product__category')
 
     def get_serializer_context(self):
-        """Передаем request в контекст сериализатора (нужно для вложенного ProductSerializer)."""
         context = super().get_serializer_context()
         context.update({"request": self.request})
         return context
-    
-    
 
-    # perform_create не требует переопределения, т.к. сериализатор сам обработает user и product_id
 
 class FavoriteDestroyByProductView(APIView):
     """
     DELETE: /api/favorites/product/{product_id}/
-    Удаляет товар из избранного пользователя по ID товара.
     """
     permission_classes = [IsAuthenticated]
 
     def delete(self, request, product_id, format=None):
         user = request.user
-        # Эффективно удаляем запись или возвращаем 404, если ее нет
         deleted_count, _ = Favorite.objects.filter(user=user, product_id=product_id).delete()
 
         if deleted_count == 0:
              return Response({"detail": "Товар не найден в избранном."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Успешное удаление
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-# --- КОНЕЦ ДОБАВЛЯЕМОГО КОДА ---

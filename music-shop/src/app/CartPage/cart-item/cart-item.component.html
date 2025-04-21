@@ -9,7 +9,7 @@
 
     <div class="item-info">
       <h4 class="item-name">{{ cartItem.product_name }}</h4>
-      <p class="item-price">{{ cartItem.product_price | currency }} each</p>
+      <p class="item-price">{{ cartItem.product_price }}₸ each</p>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
       <button (click)="incrementQuantity()">+</button>
     </div>
     <div class="item-total-price">
-      Subtotal: {{ cartItem.item_total_price | currency }}
+      Subtotal: {{ cartItem.item_total_price}}₸
     </div>
     <button class="remove-button" (click)="onRemoveClick()">Remove</button>
   </div>

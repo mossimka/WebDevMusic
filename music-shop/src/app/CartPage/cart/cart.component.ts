@@ -9,6 +9,7 @@ import {RouterLink} from '@angular/router';
 import {RoutingButtonComponent} from '../../Buttons/routing-button/routing-button.component';
 import { OrderService } from '../../services/order.service';
 import { Router } from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -26,6 +27,7 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit, OnDestroy {
   cartItemList: CartItem[] = [];
   private destroy$ = new Subject<void>();
+  private authService = inject(AuthService);
 
   constructor(
     private cartService: CartService,
@@ -85,31 +87,48 @@ export class CartComponent implements OnInit, OnDestroy {
 
   calculateTotalPrice(): number {
     return this.cartItemList.reduce(
-      (total, item) => total + (item.product.price * item.quantity),
+      (total, item) => {
+        const itemPrice = parseFloat(item.item_total_price.toString());
+        return total + (isNaN(itemPrice) ? 0 : itemPrice);
+      },
       0
     );
   }
-  
+
   createOrder(): void {
-    const orderData = {
-      items: this.cartItemList.map(item => ({
-        product: item.product.id,
-        quantity: item.quantity
-      })),
-      total_order_price: this.calculateTotalPrice()
-    };
-  
-    this.orderService.createOrder(orderData)
-      .pipe(takeUntil(this.destroy$))
+    this.authService.getCurrentUser()
       .subscribe({
-        next: (order) => {
-          console.log('Order created:', order);
-          this.cartService.clearCart().subscribe(() => {
-            this.router.navigate(['/orders']);
-          });
+        next: (user) => {
+          if (!user || typeof user.id === 'undefined') {
+            console.error('Cannot create order: Valid user data not available.');
+            return;
+          }
+          const currentUserId = user.id;
+          const orderData = {
+            user: currentUserId,
+            items: this.cartItemList.map(item => ({
+              product: item.product,
+              quantity: item.quantity
+            })),
+            total_order_price: this.calculateTotalPrice()
+          };
+
+          this.orderService.createOrder(orderData)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe({
+              next: (order) => {
+                console.log('Order created:', order);
+                this.cartService.clearCart().subscribe(() => {
+                  this.router.navigate(['/orders']);
+                });
+              },
+              error: (err) => {
+                console.error('Failed to create order:', err);
+              }
+            });
         },
         error: (err) => {
-          console.error('Failed to create order:', err);
+          console.error('Failed to get user details before creating order:', err);
         }
       });
   }

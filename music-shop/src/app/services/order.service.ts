@@ -8,6 +8,7 @@ import { Order } from '../interfaces/order';
 })
 export class OrderService {
   private baseUrl = 'http://localhost:8000/api/orders/';
+  private apiUrlBase = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +29,7 @@ export class OrderService {
   }
 
   getMyOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.baseUrl}/my-orders/`);
+    return this.http.get<Order[]>(`${this.apiUrlBase}/my-orders/`);
   }
   getOrderDetails(orderId: number): Observable<Order> {
     return this.http.get<Order>(`${this.baseUrl}/orders/${orderId}/`);
