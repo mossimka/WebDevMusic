@@ -10,12 +10,18 @@
     </app-cart-item>
   </div>
 
-  <section class="cart-summary">
-    <h3>Summary</h3>
-    <p>Total Items: {{ cartItemList.length }}</p>
-    <button class="">Proceed to Checkout</button>
-  </section>
-
+  <div class="cart-footer">
+    <div class="total-price">
+      Итого: {{ calculateTotalPrice() | currency:'KZT':'symbol':'1.2-2' }}
+    </div>
+    <button 
+      (click)="createOrder()" 
+      class="checkout-btn"
+      [disabled]="!cartItemList.length"
+    >
+      Оформить заказ
+    </button>
+  </div>
 </section>
 
 <ng-template #emptyCart>
