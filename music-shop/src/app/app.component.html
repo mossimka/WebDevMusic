@@ -2,8 +2,8 @@
   <img [routerLink]="['/']" class="brand-logo" src="/assets/logo.png" alt="logo">
   <div>
     <section *ngIf="!logged_in" class="logging">
-      <button class="primary" id="sign_in" [routerLink]="['/sign-in']">Sign in</button>
-      <button class="primary" id="sign_up" [routerLink]="['/sign-up']">Sign up</button>
+      <app-routing-button [routePath]="['/sign-in']">Sign in</app-routing-button>
+      <app-routing-button [routePath]="['/sign-up']">Sign up</app-routing-button>
     </section>
     <div class="logged" *ngIf="logged_in">
       <div class="logged-buttons">
