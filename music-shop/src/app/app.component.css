@@ -87,7 +87,7 @@ main {
 
 .pop-up button {
   display: block;
-  width: 45%;
+  width: 10vw;
   padding: 10px 15px;
   border: none;
   background-color: var(--primary-dark);

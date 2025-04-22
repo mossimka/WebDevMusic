@@ -18,8 +18,7 @@ import {AuthService} from '../../services/auth.service';
     CommonModule,
     NgForOf,
     CartItemComponent,
-    RoutingButtonComponent,
-    RouterLink
+    RoutingButtonComponent
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'

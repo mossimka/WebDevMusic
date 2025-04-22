@@ -5,7 +5,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common'; // Import CommonMo
 @Component({
   selector: 'app-cart-item',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe],
+  imports: [CommonModule],
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.css']
 })
