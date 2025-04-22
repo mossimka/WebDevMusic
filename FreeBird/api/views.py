@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework.decorators import api_view
 from .models import Product, User, Category, Order, OrderItem, Cart, CartItem, Favorite
 from .serializers import (
     ProductSerializer, UserSerializer, CategorySerializer,
@@ -335,3 +335,24 @@ class FavoriteDestroyByProductView(APIView):
              return Response({"detail": "Товар не найден в избранном."}, status=status.HTTP_404_NOT_FOUND)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+def api_status(request):
+    """
+    API status check.
+    """
+    return Response({'status': 'ok', 'message': 'API is running'}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def cart_item_count(request):
+    """
+    Unique items in cart.
+    """
+    try:
+        cart = Cart.objects.get(user=request.user)
+        count = CartItem.objects.filter(cart=cart).count() 
+        return Response({'count': count}, status=status.HTTP_200_OK)
+    except Cart.DoesNotExist:
+        return Response({'count': 0}, status=status.HTTP_200_OK)
+    except Exception as e:
+         return Response({'error': 'Could not retrieve cart count'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

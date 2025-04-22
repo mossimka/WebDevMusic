@@ -96,7 +96,7 @@
   width: 80%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding-left: 10vw;
+  padding-left: 11vw;
   align-items: center;
 }
 
@@ -118,7 +118,6 @@
   z-index: 5;
 }
 
-
 .favorite-button svg {
   width: 16px;
   height: 16px;
@@ -126,7 +125,6 @@
   fill: #bbb;
   transition: fill 0.2s ease;
 }
-
 
 .favorite-button:hover:not(:disabled) svg {
   fill: #f57;
