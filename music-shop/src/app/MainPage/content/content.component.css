@@ -2,12 +2,15 @@
   display: flex;
   justify-content: center;
 }
-h4 {
+.name-div{
   position: relative;
   left: 43vw;
   width: 14vw;
   margin-top: 3vh;
   color: linear-gradient(70deg, var(--sandy), var(--primary-dark));
+  border-radius: 2vw;
+}
+h4 {
   font-weight: 800;
 }
 .results {

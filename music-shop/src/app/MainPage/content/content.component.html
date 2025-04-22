@@ -22,7 +22,10 @@
     </button>
   </div>
 </section>
-<h4 *ngIf="user?.first_name">Welcome back, {{ user?.first_name }}!</h4>
+<div class ="name-div">
+  <h4 *ngIf="user?.first_name">Welcome back, {{ user?.first_name }}!</h4>
+</div>
+
 <div class="div-results">
   <section class="results">
     <div *ngFor="let product of filteredProductsList">
