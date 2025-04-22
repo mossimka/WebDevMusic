@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, User, Order, Category, Cart, Favorite
+from .models import Product, User, Order, Category, Cart, Favorite, OrderItem
 
 
 # Register your models here.
@@ -29,3 +29,7 @@ class FavoriteAdmin(admin.ModelAdmin):
     list_filter = ('added_on', 'user')
     search_fields = ('user__username', 'product__name')
 
+
+@admin.register(OrderItem)
+class OrderItem(admin.ModelAdmin):
+    list_display = ('order', 'product', 'quantity', 'price')

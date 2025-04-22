@@ -27,7 +27,7 @@ class ProductSerializer(serializers.ModelSerializer):
             return None
 
     def get_is_favorite(self, obj):
-        user = self.context.get('request', None).user if self.context.get('request') else None # Safely get user
+        user = self.context.get('request', None).user if self.context.get('request') else None
         if user and user.is_authenticated:
             return Favorite.objects.filter(user=user, product=obj).exists()
         return False
@@ -53,7 +53,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         product = attrs['product']
         if Favorite.objects.filter(user=user, product=product).exists():
-             raise serializers.ValidationError({"product_id": "Этот товар уже в избранном."})
+             raise serializers.ValidationError({"product_id": "This item is already in favorites."})
         return attrs
 
 
@@ -74,17 +74,55 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model= OrderItem
         fields = ('id', 'product', 'quantity', 'price', 'total_item_price')
 
+class OrderItemCreateSerializer(serializers.Serializer):
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    quantity = serializers.IntegerField(min_value=1)
+
+
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
+    items_data = OrderItemCreateSerializer(many=True, write_only=True, required=True)#input
+    user = UserSerializer(read_only=True)
+    total_order_price = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Order
-        fields = ('id', 'user', 'date', 'items', 'total_order_price')
+        fields = ('id', 'user', 'date', 'items', 'items_data', 'total_order_price')
+        read_only_fields = ('id', 'date', 'user', 'total_order_price', 'items')
+
+    def create(self, validated_data):
+        items_data = validated_data.pop('items_data')
+        user = self.context['request'].user
+        order = Order.objects.create(user=user, total_order_price=0)
+
+        calculated_total = 0
+        try:
+            for item_data in items_data:
+                product = item_data['product']
+                quantity = item_data['quantity']
+                price_at_order_time = product.price
+
+                OrderItem.objects.create(
+                    order=order,
+                    product=product,
+                    quantity=quantity,
+                    price=price_at_order_time
+                )
+
+                calculated_total += (quantity * price_at_order_time)
+
+        except Exception as e:
+            print(f"Error creating order items: {e}")
+            raise e
+        order.total_order_price = calculated_total
+        order.save()
+        return order
 
 
 class CartItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name', read_only=True)
-    item_total_price = serializers.DecimalField(source='total_item_price', read_only=True, max_digits=10, decimal_places=2)
-    product_price = serializers.DecimalField(source='product.price', read_only=True, max_digits=10, decimal_places=2)
+    item_total_price = serializers.IntegerField(source='total_item_price', read_only=True)
+    product_price = serializers.IntegerField(source='product.price', read_only=True)
     product_photo_url = serializers.SerializerMethodField(read_only=True)
     quantity = serializers.IntegerField(min_value=1)
 
@@ -102,15 +140,14 @@ class CartItemSerializer(serializers.ModelSerializer):
 
     def validate_quantity(self, value):
         if value <= 0:
-             raise serializers.ValidationError("Quantity must be a positive number.")
+            raise serializers.ValidationError("Quantity must be a positive number.")
         return value
-
 
 class CartSerializer(serializers.ModelSerializer):
     items = CartItemSerializer(many=True, read_only=True)
-    total_cart_price = serializers.DecimalField(source='total_price', read_only=True, max_digits=10, decimal_places=2)
     user = UserSerializer(read_only=True)
+
     class Meta:
         model = Cart
-        fields = ('id', 'user', 'items', 'total_cart_price', 'created_at', 'updated_at')
-        read_only_fields = ('id', 'user', 'items', 'total_cart_price', 'created_at', 'updated_at')
+        fields = ('id', 'user', 'items', 'created_at', 'updated_at', 'total_cart_price')
+        read_only_fields = ('id', 'user', 'items', 'created_at', 'updated_at')

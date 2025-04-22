@@ -16,7 +16,7 @@
       </div>
       <div class="order-summary">
         <strong>Total:</strong>
-        {{ order.total_order_price | currency : "₸" : "symbol" : "1.2-2" }}
+        {{ order.total_order_price}} ₸
       </div>
       <div class="order-items" *ngIf="order.items?.length">
         <h4>Items:</h4>
@@ -25,11 +25,11 @@
             <span class="item-name">{{ item.product_name }}</span>
             <span class="item-details">
               {{ item.quantity }} x
-              {{ item.price | currency : "₸" : "symbol" : "1.2-2" }}
+              {{ item.price}} ₸
             </span>
             <span class="item-total">
               =
-              {{ item.total_item_price | currency : "₸" : "symbol" : "1.2-2" }}
+              {{ item.total_item_price}} ₸
             </span>
           </li>
         </ul>

@@ -34,7 +34,7 @@ class Product(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     date = models.DateTimeField(auto_now_add=True)
-    total_order_price = models.PositiveIntegerField()
+    total_order_price = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"Order #{self.id} of {self.user.username}"
@@ -43,16 +43,12 @@ class Order(models.Model):
         ordering = ['-date']
 
 
+
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def save(self, *args, **kwargs):
-        if not self.pk: # if it's a new object
-             self.price = self.product.price
-        super().save(*args, **kwargs)
+    price = models.PositiveIntegerField()
 
     @property
     def total_item_price(self):
@@ -72,11 +68,9 @@ class Cart(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     @property
-    def total_price(self):
-        aggregation = self.items.aggregate(
-            total=Sum(F('quantity') * F('product__price'), output_field=PositiveIntegerField())
-        )
-        return aggregation['total'] or 0
+    def total_cart_price(self):
+        total = self.quantity * self.product_price
+        return total or 0
 
     def __str__(self):
         return f"User's cart {self.user.username}"
@@ -91,7 +85,7 @@ class CartItem(models.Model):
         return self.quantity * self.product.price
 
     def __str__(self):
-        return f"{self.quantity} x {self.product.name} в корзине {self.cart.user.username}"
+        return f"{self.quantity} x {self.product.name} in cart {self.cart.user.username}"
 
     class Meta:
         unique_together = ('cart', 'product')
