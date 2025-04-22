@@ -46,7 +46,7 @@ export class FavoriteService {
       'Favorite Service: handleError ENTERED (for POST/DELETE)',
       error
     );
-    let errorMessage = 'Произошла ошибка при работе с избранным.';
+    let errorMessage = 'An error happend during work with favorites.';
     if (error.error?.detail) {
       errorMessage = error.error.detail;
     } else if (error.status === 400 && error.error?.product_id) {

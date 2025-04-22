@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators'; // Import the tap operator
-import { Cart } from '../interfaces/cart'; // Adjust path as needed
-import { CartItem } from '../interfaces/cart-item'; // Adjust path as needed
+import { tap } from 'rxjs/operators';
+import { Cart } from '../interfaces/cart';
+import { CartItem } from '../interfaces/cart-item';
 
 @Injectable({
   providedIn: 'root'

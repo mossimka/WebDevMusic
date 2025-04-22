@@ -97,7 +97,7 @@ class CartItem(models.Model):
         unique_together = ('cart', 'product')
         ordering = ['id']
 
-# --- NEW MODEL for Favorites ---
+# Favorites
 class Favorite(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='favorites')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='favorited_by')

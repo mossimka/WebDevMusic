@@ -89,11 +89,6 @@ export class AuthService {
     this.validateToken().subscribe((isValid) => {
       console.log('Initial token validation result:', isValid);
       if (!isValid && this.checkLoggedIn()) {
-        // If validation fails but checkLoggedIn was true, update state
-        // This might happen if token exists but is invalid/expired
-        // However, the interceptor's refresh logic is usually better suited for this
-        // Consider if this explicit update is needed vs letting 401 handling work.
-        // this.loggedInSubject.next(false);
       } else if (isValid && !this.checkLoggedIn()) {
         this.loggedInSubject.next(true);
       }

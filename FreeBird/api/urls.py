@@ -37,7 +37,7 @@ urlpatterns = [
     path('sign-up/', PublicUserCreateAPIView.as_view(), name='sign-up'), # Используем свое имя 'sign-up'
     path('me/', CurrentUserAPIView.as_view(), name='current-user'),
 
-    # --- User Management (Admin?) ---
+    # --- User Management ---
     path('users/', UserListCreateAPIView.as_view(), name='user-list-create'),
     path('users/<int:pk>/', UserRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
 
