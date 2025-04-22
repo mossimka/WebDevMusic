@@ -6,6 +6,9 @@ h4 {
   position: relative;
   left: 43vw;
   width: 14vw;
+  margin-top: 3vh;
+  color: linear-gradient(70deg, var(--sandy), var(--primary-dark));
+  font-weight: 800;
 }
 .results {
   width: 80vw;
