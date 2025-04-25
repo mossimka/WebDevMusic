@@ -46,7 +46,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       },
       error: (err) => {
         console.error('Error loading orders (manual sub):', err);
-        this.error = err.message || 'Не удалось загрузить историю заказов.';
+        this.error = err.message || "Can't load orders History.";
         this.loading = false;
         this.orders = [];
       },
